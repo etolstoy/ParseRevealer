@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, ParseACLPermission) {
-    ParseACLPermissionUnknown = -1,
     ParseACLPermissionFalse = 0,
-    ParseACLPermissionTrue = 1
+    ParseACLPermissionTrue = 1,
+    ParseACLPermissionUnknown = 2
 };
 
 typedef void (^ParseAccountCheckBlock)(NSError *error);

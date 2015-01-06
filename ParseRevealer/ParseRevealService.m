@@ -55,6 +55,12 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
         dispatch_group_leave(group);
     }];
     
+    dispatch_group_enter(group);
+    [self checkCreatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
+        [aclDictionary setObject:@(permission) forKey:@"CREATE"];
+        dispatch_group_leave(group);
+    }];
+    
     dispatch_group_notify(group, queue,^{
         NSLog(@"group begin");
         completion(aclDictionary, nil);
@@ -66,8 +72,9 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 - (void)checkGetPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
-        if (!firstObject) {
+        if (!firstObject && !error) {
             completion(ParseACLPermissionUnknown, nil);
+            return;
         }
         
         if (firstObject && !error) {
@@ -81,7 +88,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
             } else if (error.code == 119) {
                 completion(ParseACLPermissionFalse, error);
             } else {
-                completion(ParseACLPermissionUnknown, nil);
+                completion(ParseACLPermissionUnknown, error);
             }
         } else {
             completion(ParseACLPermissionUnknown, nil);
@@ -96,7 +103,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
         } else if (error.code == 119) {
             completion(ParseACLPermissionFalse, error);
         } else {
-            completion(ParseACLPermissionUnknown, nil);
+            completion(ParseACLPermissionUnknown, error);
         }
     }];
 }
@@ -105,6 +112,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (!firstObject) {
             completion(ParseACLPermissionUnknown, nil);
+            return;
         }
         
         NSArray *allKeys = [firstObject allKeys];
@@ -117,14 +125,24 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
             } else if (error.code == 119) {
                 completion(ParseACLPermissionFalse, error);
             } else {
-                completion(ParseACLPermissionUnknown, nil);
+                completion(ParseACLPermissionUnknown, error);
             }
         }];
     }];
 }
 
-- (BOOL)checkCreatePermissionForCustomClass:(NSString *)customClassName {
-    return NO;
+- (void)checkCreatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+    PFObject *object = [PFObject objectWithClassName:customClassName];
+    
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            completion(ParseACLPermissionTrue, nil);
+        } else if (error.code == 119) {
+            completion(ParseACLPermissionFalse, error);
+        } else {
+            completion(ParseACLPermissionUnknown, error);
+        }
+    }];
 }
 
 - (BOOL)checkDeletePermissionForCustomClass:(NSString *)customClassName {
