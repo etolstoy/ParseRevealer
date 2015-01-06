@@ -15,6 +15,8 @@
 
 @property (weak) IBOutlet NSTextField *applicationIdTextField;
 @property (weak) IBOutlet NSTextField *clientKeyTextField;
+@property (unsafe_unretained) IBOutlet NSTextView *customClassesTextView;
+@property (unsafe_unretained) IBOutlet NSTextView *aclTextView;
 
 @end
 
@@ -36,6 +38,14 @@
                                                 NSLog(@"error");
                                             }
                                         }];
+}
+
+- (IBAction)revealButtonClicked:(id)sender {
+    NSArray *customClassesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
+    
+    [self.parseRevealService getAclForCustomClass:[customClassesArray firstObject] completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
+        
+    }];
 }
 
 

@@ -10,7 +10,12 @@
 
 #import <ParseOSX/ParseOSX.h>
 
+typedef void (^ParsePermissionCheckBlock)(BOOL enabled, NSError *error);
+typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
+
 @implementation ParseRevealService
+
+#pragma mark - Public Methods
 
 - (void)checkParseForApplicationId:(NSString *)applicationId
                          clientKey:(NSString *)clientKey
@@ -21,6 +26,85 @@
     PFQuery *query = [PFUser query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         completion(error);
+    }];
+}
+
+- (void)getAclForCustomClass:(NSString *)customClassName
+             completionBlock:(ParseCustomClassACLBlock)completion
+{
+    NSMutableDictionary *aclDictionary = [@{} mutableCopy];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_enter(group);
+    [self checkGetPermissionForCustomClass:customClassName compleionBlock:^(BOOL enabled, NSError *error) {
+        [aclDictionary setObject:@(enabled) forKey:@"GET"];
+        dispatch_group_leave(group);
+    }];
+
+    
+    dispatch_group_notify(group, queue,^{
+        NSLog(@"group begin");
+        completion(aclDictionary, nil);
+        NSLog(@"group end");
+    });
+}
+
+#pragma mark - Private Methods
+
+- (void)checkGetPermissionForCustomClass:(NSString *)customClassName compleionBlock:(ParsePermissionCheckBlock)completion {
+    [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
+        if (firstObject && !error) {
+            NSString *firstObjectId = firstObject.objectId;
+            
+            PFObject *testObject = [PFQuery getObjectOfClass:customClassName
+                                                    objectId:firstObjectId
+                                                       error:&error];
+            if (testObject && !error) {
+                completion(YES, nil);
+            } else {
+                completion(NO, error);
+            }
+        } else {
+            completion(NO, error);
+        }
+    }];
+}
+
+- (BOOL)checkFindPermissionForCustomClass:(NSString *)customClassName {
+    return NO;
+}
+
+- (BOOL)checkUpdatePermissionForCustomClass:(NSString *)customClassName {
+
+    
+    return NO;
+}
+
+- (BOOL)checkCreatePermissionForCustomClass:(NSString *)customClassName {
+    return NO;
+}
+
+- (BOOL)checkDeletePermissionForCustomClass:(NSString *)customClassName {
+    return NO;
+}
+
+- (BOOL)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName {
+    return NO;
+}
+
+- (void)firstObjectInQueryForCustomClassName:(NSString *)customClassName completionBlock:(ParseFirstObjectBlock)completion {
+    PFQuery *query = [PFQuery queryWithClassName:customClassName];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects && !error) {
+            PFObject *firstObject = [objects firstObject];
+            
+            completion(firstObject, nil);
+        } else {
+            completion(nil, error);
+        }
     }];
 }
 
