@@ -13,8 +13,10 @@
 		9FBBFF741A5C5B9C00138ACE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF731A5C5B9C00138ACE /* Images.xcassets */; };
 		9FBBFF771A5C5B9D00138ACE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF751A5C5B9D00138ACE /* Main.storyboard */; };
 		9FBBFF831A5C5B9D00138ACE /* ParseRevealerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF821A5C5B9D00138ACE /* ParseRevealerTests.m */; };
-		9FBBFF8E1A5C5CDA00138ACE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; };
-		9FBBFF8F1A5C5CDA00138ACE /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; };
+		9FBBFF971A5C5F5D00138ACE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; };
+		9FBBFF981A5C5F5D00138ACE /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; };
+		9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,21 @@
 			remoteInfo = ParseRevealer;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9FBBFF9B1A5C5F5D00138ACE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9FBBFF981A5C5F5D00138ACE /* Bolts.framework in Embed Frameworks */,
+				9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9FBBFF661A5C5B9C00138ACE /* ParseRevealer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseRevealer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,8 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FBBFF8E1A5C5CDA00138ACE /* Bolts.framework in Frameworks */,
-				9FBBFF8F1A5C5CDA00138ACE /* ParseOSX.framework in Frameworks */,
+				9FBBFF971A5C5F5D00138ACE /* Bolts.framework in Frameworks */,
+				9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +159,7 @@
 				9FBBFF621A5C5B9C00138ACE /* Sources */,
 				9FBBFF631A5C5B9C00138ACE /* Frameworks */,
 				9FBBFF641A5C5B9C00138ACE /* Resources */,
+				9FBBFF9B1A5C5F5D00138ACE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,6 +372,7 @@
 				);
 				INFOPLIST_FILE = ParseRevealer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -369,6 +388,7 @@
 				);
 				INFOPLIST_FILE = ParseRevealer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
