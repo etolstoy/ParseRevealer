@@ -10,7 +10,7 @@
 
 #import <ParseOSX/ParseOSX.h>
 
-typedef void (^ParsePermissionCheckBlock)(BOOL enabled, NSError *error);
+typedef void (^ParsePermissionCheckBlock)(ParseACLPermission permission, NSError *error);
 typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 @implementation ParseRevealService
@@ -38,17 +38,22 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
-    [self checkGetPermissionForCustomClass:customClassName completionBlock:^(BOOL enabled, NSError *error) {
-        [aclDictionary setObject:@(enabled) forKey:@"GET"];
+    [self checkGetPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
+        [aclDictionary setObject:@(permission) forKey:@"GET"];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
-    [self checkFindPermissionForCustomClass:customClassName completionBlock:^(BOOL enabled, NSError *error) {
-        [aclDictionary setObject:@(enabled) forKey:@"FIND"];
+    [self checkFindPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
+        [aclDictionary setObject:@(permission) forKey:@"FIND"];
         dispatch_group_leave(group);
     }];
 
+    dispatch_group_enter(group);
+    [self checkUpdatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
+        [aclDictionary setObject:@(permission) forKey:@"UPDATE"];
+        dispatch_group_leave(group);
+    }];
     
     dispatch_group_notify(group, queue,^{
         NSLog(@"group begin");
@@ -61,6 +66,10 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 - (void)checkGetPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
+        if (!firstObject) {
+            completion(ParseACLPermissionUnknown, nil);
+        }
+        
         if (firstObject && !error) {
             NSString *firstObjectId = firstObject.objectId;
             
@@ -68,12 +77,14 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
                                                     objectId:firstObjectId
                                                        error:&error];
             if (testObject && !error) {
-                completion(YES, nil);
+                completion(ParseACLPermissionTrue, nil);
+            } else if (error.code == 119) {
+                completion(ParseACLPermissionFalse, error);
             } else {
-                completion(NO, error);
+                completion(ParseACLPermissionUnknown, nil);
             }
         } else {
-            completion(NO, error);
+            completion(ParseACLPermissionUnknown, nil);
         }
     }];
 }
@@ -81,17 +92,35 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 - (void)checkFindPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (!error) {
-            completion(YES, nil);
+            completion(ParseACLPermissionTrue, nil);
+        } else if (error.code == 119) {
+            completion(ParseACLPermissionFalse, error);
         } else {
-            completion(NO, error);
+            completion(ParseACLPermissionUnknown, nil);
         }
     }];
 }
 
-- (BOOL)checkUpdatePermissionForCustomClass:(NSString *)customClassName {
-
-    
-    return NO;
+- (void)checkUpdatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+    [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
+        if (!firstObject) {
+            completion(ParseACLPermissionUnknown, nil);
+        }
+        
+        NSArray *allKeys = [firstObject allKeys];
+        NSString *firstKey = [allKeys firstObject];
+        [firstObject setValue:@"" forKey:firstKey];
+        
+        [firstObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded || error.code == 111) {
+                completion(ParseACLPermissionTrue, nil);
+            } else if (error.code == 119) {
+                completion(ParseACLPermissionFalse, error);
+            } else {
+                completion(ParseACLPermissionUnknown, nil);
+            }
+        }];
+    }];
 }
 
 - (BOOL)checkCreatePermissionForCustomClass:(NSString *)customClassName {
