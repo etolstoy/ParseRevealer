@@ -17,6 +17,7 @@
 		9FBBFF981A5C5F5D00138ACE /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; };
 		9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		9FBBFF821A5C5B9D00138ACE /* ParseRevealerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseRevealerTests.m; sourceTree = "<group>"; };
 		9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
+		9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseRevealService.h; sourceTree = "<group>"; };
+		9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseRevealService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */,
 				9FBBFF701A5C5B9C00138ACE /* ViewController.h */,
 				9FBBFF711A5C5B9C00138ACE /* ViewController.m */,
+				9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */,
+				9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */,
 				9FBBFF731A5C5B9C00138ACE /* Images.xcassets */,
 				9FBBFF751A5C5B9D00138ACE /* Main.storyboard */,
 				9FBBFF901A5C5CE400138ACE /* Frameworks */,
@@ -251,6 +256,7 @@
 			files = (
 				9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
+				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
 				9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

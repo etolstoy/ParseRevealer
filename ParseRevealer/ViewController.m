@@ -7,19 +7,36 @@
 //
 
 #import "ViewController.h"
+#import "ParseRevealService.h"
+
+@interface ViewController()
+
+@property (strong, nonatomic) ParseRevealService *parseRevealService;
+
+@property (weak) IBOutlet NSTextField *applicationIdTextField;
+@property (weak) IBOutlet NSTextField *clientKeyTextField;
+
+@end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view.
+    self.parseRevealService = [ParseRevealService new];
 }
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
+- (IBAction)testConnectionButtonClicked:(id)sender {
+    [self.parseRevealService checkParseForApplicationId:self.applicationIdTextField.stringValue
+                                              clientKey:self.clientKeyTextField.stringValue
+                                        completionBlock:^(NSError *error) {
+                                            if (!error) {
+                                                NSLog(@"success!");
+                                            } else {
+                                                NSLog(@"error");
+                                            }
+                                        }];
 }
+
 
 @end
