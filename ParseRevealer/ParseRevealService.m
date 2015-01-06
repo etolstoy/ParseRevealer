@@ -38,8 +38,14 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
-    [self checkGetPermissionForCustomClass:customClassName compleionBlock:^(BOOL enabled, NSError *error) {
+    [self checkGetPermissionForCustomClass:customClassName completionBlock:^(BOOL enabled, NSError *error) {
         [aclDictionary setObject:@(enabled) forKey:@"GET"];
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_enter(group);
+    [self checkFindPermissionForCustomClass:customClassName completionBlock:^(BOOL enabled, NSError *error) {
+        [aclDictionary setObject:@(enabled) forKey:@"FIND"];
         dispatch_group_leave(group);
     }];
 
@@ -53,7 +59,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 #pragma mark - Private Methods
 
-- (void)checkGetPermissionForCustomClass:(NSString *)customClassName compleionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkGetPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (firstObject && !error) {
             NSString *firstObjectId = firstObject.objectId;
@@ -72,8 +78,14 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-- (BOOL)checkFindPermissionForCustomClass:(NSString *)customClassName {
-    return NO;
+- (void)checkFindPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+    [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
+        if (!error) {
+            completion(YES, nil);
+        } else {
+            completion(NO, error);
+        }
+    }];
 }
 
 - (BOOL)checkUpdatePermissionForCustomClass:(NSString *)customClassName {
