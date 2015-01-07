@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
+		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
+		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
+		9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC93A1A5D55DE00050FB1 /* Constants.m */; };
 		9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */; };
 		9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6E1A5C5B9C00138ACE /* main.m */; };
 		9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF711A5C5B9C00138ACE /* ViewController.m */; };
 		9FBBFF741A5C5B9C00138ACE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF731A5C5B9C00138ACE /* Images.xcassets */; };
 		9FBBFF771A5C5B9D00138ACE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF751A5C5B9D00138ACE /* Main.storyboard */; };
 		9FBBFF831A5C5B9D00138ACE /* ParseRevealerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF821A5C5B9D00138ACE /* ParseRevealerTests.m */; };
+		9FBBFF971A5C5F5D00138ACE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; };
+		9FBBFF981A5C5F5D00138ACE /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; };
+		9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +34,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9FBBFF9B1A5C5F5D00138ACE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9FBBFF981A5C5F5D00138ACE /* Bolts.framework in Embed Frameworks */,
+				9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		9F1866601A5D425D00AFF30E /* NSString+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Random.h"; sourceTree = "<group>"; };
+		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
+		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
+		9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionCheckingService.m; sourceTree = "<group>"; };
+		9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLFormatter.h; sourceTree = "<group>"; };
+		9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLFormatter.m; sourceTree = "<group>"; };
+		9F9AC9391A5D55DE00050FB1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9F9AC93A1A5D55DE00050FB1 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9FBBFF661A5C5B9C00138ACE /* ParseRevealer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseRevealer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FBBFF6A1A5C5B9C00138ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -38,6 +70,10 @@
 		9FBBFF7C1A5C5B9D00138ACE /* ParseRevealerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseRevealerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FBBFF811A5C5B9D00138ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FBBFF821A5C5B9D00138ACE /* ParseRevealerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseRevealerTests.m; sourceTree = "<group>"; };
+		9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
+		9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseRevealService.h; sourceTree = "<group>"; };
+		9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseRevealService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBBFF971A5C5F5D00138ACE /* Bolts.framework in Frameworks */,
+				9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +117,23 @@
 		9FBBFF681A5C5B9C00138ACE /* ParseRevealer */ = {
 			isa = PBXGroup;
 			children = (
+				9F9AC9391A5D55DE00050FB1 /* Constants.h */,
+				9F9AC93A1A5D55DE00050FB1 /* Constants.m */,
 				9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */,
 				9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */,
 				9FBBFF701A5C5B9C00138ACE /* ViewController.h */,
 				9FBBFF711A5C5B9C00138ACE /* ViewController.m */,
+				9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */,
+				9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */,
+				9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */,
+				9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */,
+				9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */,
+				9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */,
+				9F1866601A5D425D00AFF30E /* NSString+Random.h */,
+				9F1866611A5D425D00AFF30E /* NSString+Random.m */,
 				9FBBFF731A5C5B9C00138ACE /* Images.xcassets */,
 				9FBBFF751A5C5B9D00138ACE /* Main.storyboard */,
+				9FBBFF901A5C5CE400138ACE /* Frameworks */,
 				9FBBFF691A5C5B9C00138ACE /* Supporting Files */,
 			);
 			path = ParseRevealer;
@@ -116,6 +165,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9FBBFF901A5C5CE400138ACE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FBBFF8C1A5C5CDA00138ACE /* Bolts.framework */,
+				9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +184,7 @@
 				9FBBFF621A5C5B9C00138ACE /* Sources */,
 				9FBBFF631A5C5B9C00138ACE /* Frameworks */,
 				9FBBFF641A5C5B9C00138ACE /* Resources */,
+				9FBBFF9B1A5C5F5D00138ACE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,8 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */,
 				9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */,
+				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
+				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
+				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
+				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
 				9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,8 +396,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ParseRevealer",
+				);
 				INFOPLIST_FILE = ParseRevealer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -343,8 +412,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ParseRevealer",
+				);
 				INFOPLIST_FILE = ParseRevealer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -404,6 +478,7 @@
 				9FBBFF881A5C5B9D00138ACE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FBBFF891A5C5B9D00138ACE /* Build configuration list for PBXNativeTarget "ParseRevealerTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +487,7 @@
 				9FBBFF8B1A5C5B9D00138ACE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
