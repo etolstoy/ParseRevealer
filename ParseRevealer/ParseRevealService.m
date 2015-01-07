@@ -7,6 +7,7 @@
 //
 
 #import "ParseRevealService.h"
+#import "NSString+Random.h"
 
 #import <ParseOSX/ParseOSX.h>
 
@@ -64,6 +65,12 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     dispatch_group_enter(group);
     [self checkDeletePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
         [aclDictionary setObject:@(permission) forKey:@"DELETE"];
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_enter(group);
+    [self checkAddFieldsPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
+        [aclDictionary setObject:@(permission) forKey:@"ADD FIELDS"];
         dispatch_group_leave(group);
     }];
     
@@ -167,16 +174,21 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
             }];
         } else {
             [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
-                if (!firstObject) {
+                if (!firstObject && !error) {
                     completion(ParseACLPermissionUnknown, nil);
                     return;
                 }
-                
-                if (succeeded) {
-                    completion(ParseACLPermissionTrue, nil);
-                } else if (error.code == 119) {
-                    completion(ParseACLPermissionFalse, error);
-                } else {
+                if (!error) {
+                    [firstObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                            completion(ParseACLPermissionTrue, nil);
+                        } else if (error.code == 119) {
+                            completion(ParseACLPermissionFalse, error);
+                        } else {
+                            completion(ParseACLPermissionUnknown, error);
+                        }
+                    }];
+                }  else {
                     completion(ParseACLPermissionUnknown, error);
                 }
             }];
@@ -184,8 +196,39 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-- (BOOL)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName {
-    return NO;
+- (void)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+    
+    PFObject *object = [PFObject objectWithClassName:customClassName];
+    NSString *newFieldName = [NSString randomString];
+    [object setValue:customClassName forKey:newFieldName];
+    
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            completion(ParseACLPermissionTrue, nil);
+        } else {
+            [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
+                if (!firstObject && !error) {
+                    completion(ParseACLPermissionUnknown, nil);
+                    return;
+                }
+                
+                if (!error) {
+                    [firstObject setValue:customClassName forKey:newFieldName];
+                    [firstObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                            completion(ParseACLPermissionTrue, nil);
+                        } else if (error.code == 119) {
+                            completion(ParseACLPermissionFalse, error);
+                        } else {
+                            completion(ParseACLPermissionUnknown, error);
+                        }
+                    }];
+                } else {
+                    completion(ParseACLPermissionUnknown, error);
+                }
+            }];
+        }
+    }];
 }
 
 - (void)firstObjectInQueryForCustomClassName:(NSString *)customClassName completionBlock:(ParseFirstObjectBlock)completion {
