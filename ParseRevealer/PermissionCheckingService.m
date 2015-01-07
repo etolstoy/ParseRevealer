@@ -11,6 +11,9 @@
 
 #import <ParseOSX/ParseOSX.h>
 
+static NSInteger const ParseOperationNotAllowedErrorCode = 119;
+static NSInteger const ParseWrongDataFormatErrorCode = 111;
+
 typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 @implementation PermissionCheckingService
@@ -32,7 +35,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
                                                        error:&error];
             if (testObject && !error) {
                 completion(ParseACLPermissionTrue, nil);
-            } else if (error.code == 119) {
+            } else if (error.code == ParseOperationNotAllowedErrorCode) {
                 completion(ParseACLPermissionFalse, error);
             } else {
                 completion(ParseACLPermissionUnknown, error);
@@ -47,7 +50,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (!error) {
             completion(ParseACLPermissionTrue, nil);
-        } else if (error.code == 119) {
+        } else if (error.code == ParseOperationNotAllowedErrorCode) {
             completion(ParseACLPermissionFalse, error);
         } else {
             completion(ParseACLPermissionUnknown, error);
@@ -68,9 +71,9 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
         [firstObject setValue:@"" forKey:firstKey];
         
         [firstObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded || error.code == 111) {
+            if (succeeded || error.code == ParseWrongDataFormatErrorCode) {
                 completion(ParseACLPermissionTrue, nil);
-            } else if (error.code == 119) {
+            } else if (error.code == ParseOperationNotAllowedErrorCode) {
                 completion(ParseACLPermissionFalse, error);
             } else {
                 completion(ParseACLPermissionUnknown, error);
@@ -85,7 +88,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             completion(ParseACLPermissionTrue, nil);
-        } else if (error.code == 119) {
+        } else if (error.code == ParseOperationNotAllowedErrorCode) {
             completion(ParseACLPermissionFalse, error);
         } else {
             completion(ParseACLPermissionUnknown, error);
@@ -100,7 +103,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
             [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     completion(ParseACLPermissionTrue, nil);
-                } else if (error.code == 119) {
+                } else if (error.code == ParseOperationNotAllowedErrorCode) {
                     completion(ParseACLPermissionFalse, error);
                 } else {
                     completion(ParseACLPermissionUnknown, error);
@@ -116,7 +119,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
                     [firstObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
                             completion(ParseACLPermissionTrue, nil);
-                        } else if (error.code == 119) {
+                        } else if (error.code == ParseOperationNotAllowedErrorCode) {
                             completion(ParseACLPermissionFalse, error);
                         } else {
                             completion(ParseACLPermissionUnknown, error);
@@ -151,7 +154,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
                     [firstObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
                             completion(ParseACLPermissionTrue, nil);
-                        } else if (error.code == 119) {
+                        } else if (error.code == ParseOperationNotAllowedErrorCode) {
                             completion(ParseACLPermissionFalse, error);
                         } else {
                             completion(ParseACLPermissionUnknown, error);

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, ParseACLPermission) {
+typedef NS_ENUM(NSInteger, ParseACLPermissionCode) {
     ParseACLPermissionFalse = 0,
     ParseACLPermissionTrue = 1,
     ParseACLPermissionUnknown = 2

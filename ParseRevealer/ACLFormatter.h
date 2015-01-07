@@ -10,7 +10,22 @@
 
 @interface ACLFormatter : NSObject
 
+/**
+ *  Method generates a proper output string for multiple classes' ACLs
+ *
+ *  @param customClassesACLs NSDictionary with format {CustomClassName : CustomClassACLDictionary}
+ *
+ *  @return Output string
+ */
 + (NSString *)stringFromCustomClassesACLs:(NSDictionary *)customClassesACLs;
+
+/**
+ *  Method generates a proper output string for single ACL
+ *
+ *  @param dictionary NSDictionary with ACL
+ *
+ *  @return Output string
+ */
 + (NSString *)stringFromACLDictionary:(NSDictionary *)dictionary;
 
 @end
