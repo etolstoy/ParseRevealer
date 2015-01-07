@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, ParseACLPermission) {
 };
 
 typedef void (^ParseAccountCheckBlock)(NSError *error);
-typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *error);
+
+typedef void (^ParseCustomClassesACLBlock)(NSDictionary *customClassesACLs, NSError *error);
 
 @interface ParseRevealService : NSObject
 
@@ -23,7 +24,7 @@ typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *e
                          clientKey:(NSString *)clientKey
                    completionBlock:(ParseAccountCheckBlock)completion;
 
-- (void)getAclForCustomClass:(NSString *)customClassName
-             completionBlock:(ParseCustomClassACLBlock)completion;
+- (void)getAclForCustomClasses:(NSArray *)customClasses
+               completionBlock:(ParseCustomClassesACLBlock)completion;
 
 @end

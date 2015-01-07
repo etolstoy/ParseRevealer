@@ -43,7 +43,7 @@
 - (IBAction)revealButtonClicked:(id)sender {
     NSArray *customClassesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
     
-    [self.parseRevealService getAclForCustomClass:[customClassesArray firstObject] completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
+    [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSDictionary *customClassesACLs, NSError *error) {
         
     }];
 }

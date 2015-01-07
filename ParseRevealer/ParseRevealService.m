@@ -11,6 +11,7 @@
 
 #import <ParseOSX/ParseOSX.h>
 
+typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *error);
 typedef void (^ParsePermissionCheckBlock)(ParseACLPermission permission, NSError *error);
 typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
@@ -30,12 +31,30 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
+- (void)getAclForCustomClasses:(NSArray *)customClasses
+               completionBlock:(ParseCustomClassesACLBlock)completion
+{
+    dispatch_group_t group = dispatch_group_create();
+    NSMutableDictionary *customClassesACLs = [@{} mutableCopy];
+    
+    for (NSString *customClassName in customClasses) {
+        dispatch_group_enter(group);
+        [self getAclForCustomClass:customClassName completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
+            [customClassesACLs setObject:aclDictionary forKey:customClassName];
+            dispatch_group_leave(group);
+        }];
+    }
+    
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),^{
+        completion(customClassesACLs, nil);
+    });
+}
+
 - (void)getAclForCustomClass:(NSString *)customClassName
              completionBlock:(ParseCustomClassACLBlock)completion
 {
     NSMutableDictionary *aclDictionary = [@{} mutableCopy];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
@@ -74,10 +93,8 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
         dispatch_group_leave(group);
     }];
     
-    dispatch_group_notify(group, queue,^{
-        NSLog(@"group begin");
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),^{
         completion(aclDictionary, nil);
-        NSLog(@"group end");
     });
 }
 
