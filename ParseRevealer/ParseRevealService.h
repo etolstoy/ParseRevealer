@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, ParseACLPermission) {
-    ParseACLPermissionFalse = 0,
-    ParseACLPermissionTrue = 1,
-    ParseACLPermissionUnknown = 2
-};
-
 typedef void (^ParseAccountCheckBlock)(NSError *error);
 
 typedef void (^ParseCustomClassesACLBlock)(NSDictionary *customClassesACLs, NSError *error);
