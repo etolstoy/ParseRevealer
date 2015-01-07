@@ -751,8 +751,8 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-mF-n8M">
-                                <rect key="frame" x="14" y="233" width="138" height="32"/>
-                                <buttonCell key="cell" type="push" title="Test connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mdS-lg-seQ">
+                                <rect key="frame" x="14" y="233" width="152" height="32"/>
+                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mdS-lg-seQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -766,7 +766,7 @@
                                     <rect key="frame" x="1" y="1" width="223" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="ajN-bb-Kl2">
+                                        <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="ajN-bb-Kl2">
                                             <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -788,13 +788,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="TME-LU-DO3">
+                                <rect key="frame" x="176" y="34" width="16" height="16"/>
+                            </progressIndicator>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="EiT-g0-wC5">
+                                <rect key="frame" x="176" y="242" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="aclTextView" destination="ajN-bb-Kl2" id="FNs-mv-adB"/>
                         <outlet property="applicationIdTextField" destination="Dn1-RA-XZt" id="dHh-6e-fWQ"/>
                         <outlet property="clientKeyTextField" destination="aZD-Je-HTj" id="9hw-ZB-wVi"/>
+                        <outlet property="connectActivityIndicator" destination="EiT-g0-wC5" id="GuS-Uv-iRW"/>
+                        <outlet property="connectButton" destination="uG1-mF-n8M" id="7EQ-AY-sA2"/>
                         <outlet property="customClassesTextView" destination="QiL-td-HFw" id="Yn2-Q2-4Ry"/>
+                        <outlet property="revealActivityIndicator" destination="TME-LU-DO3" id="Ug1-CZ-isv"/>
+                        <outlet property="revealButton" destination="ckj-3M-87t" id="gVL-lp-YrQ"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
