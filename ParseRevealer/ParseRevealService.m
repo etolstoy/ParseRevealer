@@ -8,6 +8,7 @@
 
 #import "ParseRevealService.h"
 #import "PermissionCheckingService.h"
+#import "Constants.h"
 
 #import <ParseOSX/ParseOSX.h>
 
@@ -57,41 +58,41 @@ typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *e
     
     dispatch_group_enter(group);
     [PermissionCheckingService checkGetPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"GET"];
+        [aclDictionary setObject:@(permission) forKey:ParseGetPermissionKey];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
     [PermissionCheckingService checkFindPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"FIND"];
+        [aclDictionary setObject:@(permission) forKey:ParseFindPermissionKey];
         dispatch_group_leave(group);
     }];
 
     dispatch_group_enter(group);
     [PermissionCheckingService checkUpdatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"UPDATE"];
+        [aclDictionary setObject:@(permission) forKey:ParseUpdatePermissionKey];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
     [PermissionCheckingService checkCreatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"CREATE"];
+        [aclDictionary setObject:@(permission) forKey:ParseCreatePermissionKey];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
     [PermissionCheckingService checkDeletePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"DELETE"];
+        [aclDictionary setObject:@(permission) forKey:ParseDeletePermissionKey];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
     [PermissionCheckingService checkAddFieldsPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermission permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:@"ADD FIELDS"];
+        [aclDictionary setObject:@(permission) forKey:ParseAddFieldsPermissionKey];
         dispatch_group_leave(group);
     }];
     
-    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),^{
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         completion(aclDictionary, nil);
     });
 }

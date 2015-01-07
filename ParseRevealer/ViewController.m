@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ParseRevealService.h"
+#import "ACLFormatter.h"
 
 @interface ViewController()
 
@@ -44,9 +45,10 @@
     NSArray *customClassesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
     
     [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSDictionary *customClassesACLs, NSError *error) {
-        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClassesACLs]];
+        });
     }];
 }
-
 
 @end
