@@ -8,6 +8,8 @@ It has the following capabilities at the moment:
 - Validity checking of Parse Application ID and Client Key.
 - Getting the list of access permissions for custom Parse classes.
 
+**WARNING:** Parse Revealer can leave a trace in Parse classes - it adds new fields and objects when testing the corresponding permissions, so be careful.
+
 ### Installation
 The installation is simple - build and run the application in XCode.
 
