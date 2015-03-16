@@ -8,6 +8,7 @@
 
 #import "ParseRevealService.h"
 #import "PermissionCheckingService.h"
+#import "ParseClassModel.h"
 #import "Constants.h"
 
 #import <ParseOSX/ParseOSX.h>
@@ -35,13 +36,12 @@ typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *e
 {
     dispatch_group_t group = dispatch_group_create();
     NSMutableDictionary *customClassesACLs = [@{} mutableCopy];
+    NSArray *parseClasses = [self parseClassesArrayWithClassNames:customClasses];
     
-    NSSet *customClassesSet = [self filterCustomClassesArray:customClasses];
-    
-    for (NSString *customClassName in customClassesSet) {
+    for (ParseClassModel *classModel in parseClasses) {
         dispatch_group_enter(group);
-        [self getAclForCustomClass:customClassName completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
-            [customClassesACLs setObject:aclDictionary forKey:customClassName];
+        [self getAclForCustomClass:classModel.className completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
+            [customClassesACLs setObject:aclDictionary forKey:classModel.className];
             dispatch_group_leave(group);
         }];
     }
@@ -100,6 +100,16 @@ typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *e
 }
 
 #pragma mark - Private Methods
+
+- (NSArray *)parseClassesArrayWithClassNames:(NSArray *)classNames {
+    NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
+    NSMutableArray *parseClasses = [@[] mutableCopy];
+    for (NSString *className in filteredCustomClasses) {
+        ParseClassModel *classModel = [ParseClassModel objectWithClassName:className];
+        [parseClasses addObject:classModel];
+    }
+    return [parseClasses copy];
+}
 
 - (NSSet *)filterCustomClassesArray:(NSArray *)customClassesArray {
     NSArray *prohibitedClassNames = @[
