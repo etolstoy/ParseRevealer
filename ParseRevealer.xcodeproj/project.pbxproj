@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
+		9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */; };
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
 		9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC93A1A5D55DE00050FB1 /* Constants.m */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		9F1866601A5D425D00AFF30E /* NSString+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Random.h"; sourceTree = "<group>"; };
 		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
+		9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClassModel.h; sourceTree = "<group>"; };
+		9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClassModel.m; sourceTree = "<group>"; };
 		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
 		9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionCheckingService.m; sourceTree = "<group>"; };
 		9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLFormatter.h; sourceTree = "<group>"; };
@@ -145,6 +148,15 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		9F53B9B71AB776E200B62E8B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */,
+				9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		9FBBFF5D1A5C5B9C00138ACE = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				9F53B9B31AB7766F00B62E8B /* Constants */,
+				9F53B9B71AB776E200B62E8B /* Models */,
 				9F53B9B21AB7766900B62E8B /* Controllers */,
 				9F53B9B11AB7766200B62E8B /* Helpers */,
 				9F53B9AF1AB7764200B62E8B /* Services */,
@@ -316,6 +329,7 @@
 			files = (
 				9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */,
 				9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */,
+				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
