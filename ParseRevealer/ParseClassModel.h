@@ -13,6 +13,8 @@
 
 + (instancetype)objectWithClassName:(NSString *)className;
 
+- (void)updatePermission:(NSString *)permissionKey withValue:(ParseACLPermissionCode)permissionCode;
+
 @property (strong, nonatomic, readonly) NSString *className;
 @property (strong, nonatomic, readonly) NSArray *classStructure;
 @property (strong, nonatomic, readonly) NSDictionary *permissions;

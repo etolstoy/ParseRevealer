@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ParseRevealService.h"
 #import "ACLFormatter.h"
+#import "ParseClassModel.h"
 
 @interface ViewController()
 
@@ -64,11 +65,12 @@
     [self enableCustomClassesInterfaceArea:NO];
     [self.revealActivityIndicator startAnimation:self];
     
-    NSArray *customClassesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
+    NSArray *customClassesNamesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
+    NSArray *customClassesArray = [self parseClassesArrayWithClassNames:customClassesNamesArray];
     
-    [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSDictionary *customClassesACLs, NSError *error) {
+    [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSArray *customClasses, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClassesACLs]];
+            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
             
             [self enableCustomClassesInterfaceArea:YES];
             [self.revealActivityIndicator stopAnimation:self];
@@ -88,6 +90,33 @@
     self.revealButton.enabled = enabled;
     self.customClassesTextView.editable = enabled;
     self.customClassesTextView.selectable = enabled;
+}
+
+- (NSArray *)parseClassesArrayWithClassNames:(NSArray *)classNames {
+    NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
+    NSMutableArray *parseClasses = [@[] mutableCopy];
+    for (NSString *className in filteredCustomClasses) {
+        ParseClassModel *classModel = [ParseClassModel objectWithClassName:className];
+        [parseClasses addObject:classModel];
+    }
+    return [parseClasses copy];
+}
+
+- (NSSet *)filterCustomClassesArray:(NSArray *)customClassesArray {
+    NSArray *prohibitedClassNames = @[
+                                      @"User",
+                                      @"Installation",
+                                      @"_User",
+                                      @"_Installation"
+                                      ];
+    
+    NSMutableSet *customClassesSet = [NSMutableSet setWithArray:customClassesArray];
+    
+    for (NSString *prohibitedClassName in prohibitedClassNames) {
+        [customClassesSet removeObject:prohibitedClassName];
+    }
+    
+    return customClassesSet;
 }
 
 @end

@@ -10,7 +10,7 @@
 
 typedef void (^ParseAccountCheckBlock)(NSError *error);
 
-typedef void (^ParseCustomClassesACLBlock)(NSDictionary *customClassesACLs, NSError *error);
+typedef void (^ParseCustomClassesACLBlock)(NSArray *customClasses, NSError *error);
 
 @interface ParseRevealService : NSObject
 

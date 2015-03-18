@@ -13,7 +13,7 @@
 
 #import <ParseOSX/ParseOSX.h>
 
-typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *error);
+typedef void (^ParseCustomClassACLBlock)(NSError *error);
 
 @implementation ParseRevealService
 
@@ -35,97 +35,66 @@ typedef void (^ParseCustomClassACLBlock)(NSDictionary *aclDictionary, NSError *e
                completionBlock:(ParseCustomClassesACLBlock)completion
 {
     dispatch_group_t group = dispatch_group_create();
-    NSMutableDictionary *customClassesACLs = [@{} mutableCopy];
-    NSArray *parseClasses = [self parseClassesArrayWithClassNames:customClasses];
     
-    for (ParseClassModel *classModel in parseClasses) {
+    for (ParseClassModel *classModel in customClasses) {
         dispatch_group_enter(group);
-        [self getAclForCustomClass:classModel.className completionBlock:^(NSDictionary *aclDictionary, NSError *error) {
-            [customClassesACLs setObject:aclDictionary forKey:classModel.className];
+        [self getAclForCustomClass:classModel completionBlock:^(NSError *error) {
             dispatch_group_leave(group);
         }];
     }
     
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),^{
-        completion(customClassesACLs, nil);
+        completion(customClasses, nil);
     });
 }
 
-- (void)getAclForCustomClass:(NSString *)customClassName
+- (void)getAclForCustomClass:(ParseClassModel *)customClass
              completionBlock:(ParseCustomClassACLBlock)completion
 {
-    NSMutableDictionary *aclDictionary = [@{} mutableCopy];
-    
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
-    [PermissionCheckingService checkGetPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseGetPermissionKey];
+    [PermissionCheckingService checkGetPermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseGetPermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
-    [PermissionCheckingService checkFindPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseFindPermissionKey];
+    [PermissionCheckingService checkFindPermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseFindPermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
 
     dispatch_group_enter(group);
-    [PermissionCheckingService checkUpdatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseUpdatePermissionKey];
+    [PermissionCheckingService checkUpdatePermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseUpdatePermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
-    [PermissionCheckingService checkCreatePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseCreatePermissionKey];
+    [PermissionCheckingService checkCreatePermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseCreatePermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
-    [PermissionCheckingService checkDeletePermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseDeletePermissionKey];
+    [PermissionCheckingService checkDeletePermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseDeletePermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_enter(group);
-    [PermissionCheckingService checkAddFieldsPermissionForCustomClass:customClassName completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
-        [aclDictionary setObject:@(permission) forKey:ParseAddFieldsPermissionKey];
+    [PermissionCheckingService checkAddFieldsPermissionForCustomClass:customClass.className completionBlock:^(ParseACLPermissionCode permission, NSError *error) {
+        [customClass updatePermission:ParseAddFieldsPermissionKey withValue:permission];
         dispatch_group_leave(group);
     }];
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        completion(aclDictionary, nil);
+        completion(nil);
     });
 }
 
 #pragma mark - Private Methods
 
-- (NSArray *)parseClassesArrayWithClassNames:(NSArray *)classNames {
-    NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
-    NSMutableArray *parseClasses = [@[] mutableCopy];
-    for (NSString *className in filteredCustomClasses) {
-        ParseClassModel *classModel = [ParseClassModel objectWithClassName:className];
-        [parseClasses addObject:classModel];
-    }
-    return [parseClasses copy];
-}
-
-- (NSSet *)filterCustomClassesArray:(NSArray *)customClassesArray {
-    NSArray *prohibitedClassNames = @[
-                                      @"User",
-                                      @"Installation",
-                                      @"_User",
-                                      @"_Installation"
-                                      ];
-    
-    NSMutableSet *customClassesSet = [NSMutableSet setWithArray:customClassesArray];
-    
-    for (NSString *prohibitedClassName in prohibitedClassNames) {
-        [customClassesSet removeObject:prohibitedClassName];
-    }
-    
-    return customClassesSet;
-}
 
 @end

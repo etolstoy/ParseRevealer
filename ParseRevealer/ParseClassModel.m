@@ -23,12 +23,37 @@
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
         self.className = className;
+        
+        self.permissions = [self defaultPermissionDictionary];
     }
     return self;
 }
 
 + (instancetype)objectWithClassName:(NSString *)className {
     return [[[self class] alloc] initWithClassName:className];
+}
+
+#pragma mark - Public Methods
+
+- (void)updatePermission:(NSString *)permissionKey withValue:(ParseACLPermissionCode)permissionCode {
+    NSMutableDictionary *mutablePermissions = [self.permissions mutableCopy];
+    if ([[mutablePermissions allKeys] containsObject:permissionKey]) {
+        [mutablePermissions setObject:@(permissionCode) forKey:permissionKey];
+    }
+    self.permissions = [mutablePermissions copy];
+}
+
+#pragma mark - Private Methods
+
+- (NSDictionary *)defaultPermissionDictionary {
+    return @{
+             ParseGetPermissionKey : @(ParseACLPermissionUnknown),
+             ParseFindPermissionKey : @(ParseACLPermissionUnknown),
+             ParseUpdatePermissionKey : @(ParseACLPermissionUnknown),
+             ParseCreatePermissionKey : @(ParseACLPermissionUnknown),
+             ParseDeletePermissionKey : @(ParseACLPermissionUnknown),
+             ParseAddFieldsPermissionKey : @(ParseACLPermissionUnknown)
+             };
 }
 
 @end

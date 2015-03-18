@@ -8,6 +8,7 @@
 
 #import "ACLFormatter.h"
 #import "Constants.h"
+#import "ParseClassModel.h"
 
 static NSString *const ACLPermissionTrue = @"True";
 static NSString *const ACLPermissionFalse = @"False";
@@ -28,12 +29,12 @@ static NSString *const ACLPermissionUnknown = @"Unknown";
     return outputString;
 }
 
-+ (NSString *)stringFromCustomClassesACLs:(NSDictionary *)customClassesACLs {
++ (NSString *)stringFromCustomClassesACLs:(NSArray *)customClasses {
     NSMutableString *outputString = [NSMutableString new];
     
-    for (NSString *key in [customClassesACLs allKeys]) {
-        NSDictionary *aclDictionary = [customClassesACLs objectForKey:key];
-        [outputString appendString:[NSString stringWithFormat:@"%@ ACL:\n%@\n", key, [self stringFromACLDictionary:aclDictionary]]];
+    for (ParseClassModel *classModel in customClasses) {
+        NSDictionary *aclDictionary = classModel.permissions;
+        [outputString appendString:[NSString stringWithFormat:@"%@ ACL:\n%@\n", classModel.className, [self stringFromACLDictionary:aclDictionary]]];
     }
     
     return outputString;
