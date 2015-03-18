@@ -12,6 +12,7 @@
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
 		9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC93A1A5D55DE00050FB1 /* Constants.m */; };
+		9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */; };
 		9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */; };
 		9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6E1A5C5B9C00138ACE /* main.m */; };
 		9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF711A5C5B9C00138ACE /* ViewController.m */; };
@@ -61,6 +62,8 @@
 		9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLFormatter.m; sourceTree = "<group>"; };
 		9F9AC9391A5D55DE00050FB1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9F9AC93A1A5D55DE00050FB1 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		9FB3B0A31ABA10580075EE01 /* ClassStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassStorageService.h; sourceTree = "<group>"; };
+		9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassStorageService.m; sourceTree = "<group>"; };
 		9FBBFF661A5C5B9C00138ACE /* ParseRevealer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseRevealer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FBBFF6A1A5C5B9C00138ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */,
 				9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */,
 				9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */,
+				9FB3B0A31ABA10580075EE01 /* ClassStorageService.h */,
+				9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
 				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
 				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
+				9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */,
 				9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

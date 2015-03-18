@@ -10,10 +10,12 @@
 #import "ParseRevealService.h"
 #import "ACLFormatter.h"
 #import "ParseClassModel.h"
+#import "ClassStorageService.h"
 
 @interface ViewController()
 
 @property (strong, nonatomic) ParseRevealService *parseRevealService;
+@property (strong, nonatomic) ClassStorageService *classStorageService;
 
 @property (weak) IBOutlet NSTextField *applicationIdTextField;
 @property (weak) IBOutlet NSTextField *clientKeyTextField;
@@ -37,6 +39,7 @@
     [super viewDidLoad];
 
     self.parseRevealService = [ParseRevealService new];
+    self.classStorageService = [ClassStorageService new];
     [self enableCustomClassesInterfaceArea:NO];
 }
 
@@ -65,17 +68,7 @@
     [self enableCustomClassesInterfaceArea:NO];
     [self.revealActivityIndicator startAnimation:self];
     
-    NSArray *customClassesNamesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
-    NSArray *customClassesArray = [self parseClassesArrayWithClassNames:customClassesNamesArray];
-    
-    [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSArray *customClasses, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
-            
-            [self enableCustomClassesInterfaceArea:YES];
-            [self.revealActivityIndicator stopAnimation:self];
-        });
-    }];
+    [self revealParseClassesFromUserInput:self.customClassesTextView.string];
 }
 
 #pragma mark - Private Methods
@@ -92,14 +85,25 @@
     self.customClassesTextView.selectable = enabled;
 }
 
-- (NSArray *)parseClassesArrayWithClassNames:(NSArray *)classNames {
+- (void)revealParseClassesFromUserInput:(NSString *)userInput {
+    NSArray *customClassesNamesArray = [userInput componentsSeparatedByString:@"\n"];
+    [self filterAndStoreClassesWithNames:customClassesNamesArray];
+    
+    [self.parseRevealService getAclForCustomClasses:self.classStorageService.parseClasses completionBlock:^(NSArray *customClasses, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
+            
+            [self enableCustomClassesInterfaceArea:YES];
+            [self.revealActivityIndicator stopAnimation:self];
+        });
+    }];
+}
+
+- (void)filterAndStoreClassesWithNames:(NSArray *)classNames {
     NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
-    NSMutableArray *parseClasses = [@[] mutableCopy];
     for (NSString *className in filteredCustomClasses) {
-        ParseClassModel *classModel = [ParseClassModel objectWithClassName:className];
-        [parseClasses addObject:classModel];
+        [self.classStorageService addClassWithName:className shouldReplaceExistingClass:NO];
     }
-    return [parseClasses copy];
 }
 
 - (NSSet *)filterCustomClassesArray:(NSArray *)customClassesArray {
