@@ -13,17 +13,58 @@ typedef void (^ParsePermissionCheckBlock)(ParseACLPermissionCode permission, NSE
 
 @interface PermissionCheckingService : NSObject
 
-+ (void)checkGetPermissionForCustomClass:(NSString *)customClassName
+/**
+ *  The method checks GET permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkGetPermissionForCustomClass:(NSString *)customClassName
                          completionBlock:(ParsePermissionCheckBlock)completion;
-+ (void)checkFindPermissionForCustomClass:(NSString *)customClassName
+
+/**
+ *  The method checks FIND permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkFindPermissionForCustomClass:(NSString *)customClassName
                           completionBlock:(ParsePermissionCheckBlock)completion;
-+ (void)checkUpdatePermissionForCustomClass:(NSString *)customClassName
+
+/**
+ *  The method checks UPDATE permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkUpdatePermissionForCustomClass:(NSString *)customClassName
                             completionBlock:(ParsePermissionCheckBlock)completion;
-+ (void)checkCreatePermissionForCustomClass:(NSString *)customClassName
+
+/**
+ *  The method checks CREATE permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkCreatePermissionForCustomClass:(NSString *)customClassName
                             completionBlock:(ParsePermissionCheckBlock)completion;
-+ (void)checkDeletePermissionForCustomClass:(NSString *)customClassName
+
+/**
+ *  The method checks DELETE permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkDeletePermissionForCustomClass:(NSString *)customClassName
                             completionBlock:(ParsePermissionCheckBlock)completion;
-+ (void)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName
+
+/**
+ *  The method checks ADD FIELDS permission for the given Parse Custom Class
+ *
+ *  @param customClassName Parse Custom Class name
+ *  @param completion      Completion block
+ */
+- (void)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName
                                completionBlock:(ParsePermissionCheckBlock)completion;
 
 @end

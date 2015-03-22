@@ -10,8 +10,17 @@
 
 @interface ClassStorageService : NSObject
 
+/**
+ *  This method adds a new Parse Custom Class to the storage.
+ *
+ *  @param className                  The name of Parse Custom Class
+ *  @param shouldReplaceExistingClass The flag indicating if the existing class should be replaced by the new one
+ */
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass;
 
-@property (strong, nonatomic, readonly) NSArray *parseClasses;
+/**
+ *  The array of all Parse Custom Classes stored in the service
+ */
+@property (strong, nonatomic, readonly) NSSet *parseClasses;
 
 @end

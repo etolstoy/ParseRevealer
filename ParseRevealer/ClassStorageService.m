@@ -11,7 +11,7 @@
 
 @interface ClassStorageService()
 
-@property (strong, nonatomic, readwrite) NSArray *parseClasses;
+@property (strong, nonatomic, readwrite) NSSet *parseClasses;
 
 @end
 
@@ -24,7 +24,7 @@
     
     if (shouldReplaceExistingClass || (!shouldReplaceExistingClass && !classExists)) {
         ParseClassModel *classModel = [ParseClassModel objectWithClassName:className];
-        NSArray *parseClasses = [self.parseClasses arrayByAddingObject:classModel];
+        NSSet *parseClasses = [self.parseClasses setByAddingObject:classModel];
         self.parseClasses = parseClasses;
     }
 }

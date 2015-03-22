@@ -2,6 +2,8 @@
 //  ParseClassModel.m
 //  ParseRevealer
 //
+//  Model for a Parse Custom Class.
+//
 //  Created by Egor Tolstoy on 16.03.15.
 //  Copyright (c) 2015 Egor Tolstoy. All rights reserved.
 //

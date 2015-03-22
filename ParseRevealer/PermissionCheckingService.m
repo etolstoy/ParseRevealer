@@ -20,7 +20,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 #pragma mark - Permissions Checking Methods
 
-+ (void)checkGetPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkGetPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (!firstObject && !error) {
             completion(ParseACLPermissionUnknown, nil);
@@ -46,7 +46,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-+ (void)checkFindPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkFindPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         if (!error) {
             completion(ParseACLPermissionTrue, nil);
@@ -58,7 +58,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-+ (void)checkUpdatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkUpdatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     [self firstObjectInQueryForCustomClassName:customClassName completionBlock:^(PFObject *firstObject, NSError *error) {
         NSArray *allKeys = [firstObject allKeys];
         NSString *firstKey = [allKeys firstObject];
@@ -82,7 +82,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-+ (void)checkCreatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkCreatePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     PFObject *object = [PFObject objectWithClassName:customClassName];
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -96,7 +96,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-+ (void)checkDeletePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkDeletePermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     PFObject *object = [PFObject objectWithClassName:customClassName];
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -133,7 +133,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
     }];
 }
 
-+ (void)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
+- (void)checkAddFieldsPermissionForCustomClass:(NSString *)customClassName completionBlock:(ParsePermissionCheckBlock)completion {
     
     PFObject *object = [PFObject objectWithClassName:customClassName];
     NSString *newFieldName = [NSString randomString];
@@ -170,7 +170,7 @@ typedef void (^ParseFirstObjectBlock)(PFObject *firstObject, NSError *error);
 
 #pragma mark - Private Methods
 
-+ (void)firstObjectInQueryForCustomClassName:(NSString *)customClassName completionBlock:(ParseFirstObjectBlock)completion {
+- (void)firstObjectInQueryForCustomClassName:(NSString *)customClassName completionBlock:(ParseFirstObjectBlock)completion {
     PFQuery *query = [PFQuery queryWithClassName:customClassName];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
