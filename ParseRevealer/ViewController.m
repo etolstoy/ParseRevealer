@@ -9,10 +9,13 @@
 #import "ViewController.h"
 #import "ParseRevealService.h"
 #import "ACLFormatter.h"
+#import "ParseClassModel.h"
+#import "ClassStorageService.h"
 
 @interface ViewController()
 
 @property (strong, nonatomic) ParseRevealService *parseRevealService;
+@property (strong, nonatomic) ClassStorageService *classStorageService;
 
 @property (weak) IBOutlet NSTextField *applicationIdTextField;
 @property (weak) IBOutlet NSTextField *clientKeyTextField;
@@ -36,6 +39,7 @@
     [super viewDidLoad];
 
     self.parseRevealService = [ParseRevealService new];
+    self.classStorageService = [ClassStorageService new];
     [self enableCustomClassesInterfaceArea:NO];
 }
 
@@ -64,16 +68,7 @@
     [self enableCustomClassesInterfaceArea:NO];
     [self.revealActivityIndicator startAnimation:self];
     
-    NSArray *customClassesArray = [self.customClassesTextView.string componentsSeparatedByString:@"\n"];
-    
-    [self.parseRevealService getAclForCustomClasses:customClassesArray completionBlock:^(NSDictionary *customClassesACLs, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClassesACLs]];
-            
-            [self enableCustomClassesInterfaceArea:YES];
-            [self.revealActivityIndicator stopAnimation:self];
-        });
-    }];
+    [self revealParseClassesFromUserInput:self.customClassesTextView.string];
 }
 
 #pragma mark - Private Methods
@@ -88,6 +83,44 @@
     self.revealButton.enabled = enabled;
     self.customClassesTextView.editable = enabled;
     self.customClassesTextView.selectable = enabled;
+}
+
+- (void)revealParseClassesFromUserInput:(NSString *)userInput {
+    NSArray *customClassesNamesArray = [userInput componentsSeparatedByString:@"\n"];
+    [self filterAndStoreClassesWithNames:customClassesNamesArray];
+    
+    [self.parseRevealService getAclForCustomClasses:self.classStorageService.parseClasses completionBlock:^(NSArray *customClasses, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
+            
+            [self enableCustomClassesInterfaceArea:YES];
+            [self.revealActivityIndicator stopAnimation:self];
+        });
+    }];
+}
+
+- (void)filterAndStoreClassesWithNames:(NSArray *)classNames {
+    NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
+    for (NSString *className in filteredCustomClasses) {
+        [self.classStorageService addClassWithName:className shouldReplaceExistingClass:NO];
+    }
+}
+
+- (NSSet *)filterCustomClassesArray:(NSArray *)customClassesArray {
+    NSArray *prohibitedClassNames = @[
+                                      @"User",
+                                      @"Installation",
+                                      @"_User",
+                                      @"_Installation"
+                                      ];
+    
+    NSMutableSet *customClassesSet = [NSMutableSet setWithArray:customClassesArray];
+    
+    for (NSString *prohibitedClassName in prohibitedClassNames) {
+        [customClassesSet removeObject:prohibitedClassName];
+    }
+    
+    return customClassesSet;
 }
 
 @end

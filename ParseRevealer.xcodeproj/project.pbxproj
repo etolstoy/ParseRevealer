@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
+		9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */; };
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
 		9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC93A1A5D55DE00050FB1 /* Constants.m */; };
+		9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */; };
 		9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */; };
 		9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6E1A5C5B9C00138ACE /* main.m */; };
 		9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF711A5C5B9C00138ACE /* ViewController.m */; };
@@ -52,12 +54,16 @@
 /* Begin PBXFileReference section */
 		9F1866601A5D425D00AFF30E /* NSString+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Random.h"; sourceTree = "<group>"; };
 		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
+		9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClassModel.h; sourceTree = "<group>"; };
+		9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClassModel.m; sourceTree = "<group>"; };
 		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
 		9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionCheckingService.m; sourceTree = "<group>"; };
 		9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLFormatter.h; sourceTree = "<group>"; };
 		9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLFormatter.m; sourceTree = "<group>"; };
 		9F9AC9391A5D55DE00050FB1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9F9AC93A1A5D55DE00050FB1 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		9FB3B0A31ABA10580075EE01 /* ClassStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassStorageService.h; sourceTree = "<group>"; };
+		9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassStorageService.m; sourceTree = "<group>"; };
 		9FBBFF661A5C5B9C00138ACE /* ParseRevealer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseRevealer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FBBFF6A1A5C5B9C00138ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +102,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F53B9AF1AB7764200B62E8B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */,
+				9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */,
+				9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */,
+				9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */,
+				9FB3B0A31ABA10580075EE01 /* ClassStorageService.h */,
+				9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		9F53B9B01AB7764900B62E8B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F1866601A5D425D00AFF30E /* NSString+Random.h */,
+				9F1866611A5D425D00AFF30E /* NSString+Random.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		9F53B9B11AB7766200B62E8B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */,
+				9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		9F53B9B21AB7766900B62E8B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */,
+				9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */,
+				9FBBFF701A5C5B9C00138ACE /* ViewController.h */,
+				9FBBFF711A5C5B9C00138ACE /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9F53B9B31AB7766F00B62E8B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9F9AC9391A5D55DE00050FB1 /* Constants.h */,
+				9F9AC93A1A5D55DE00050FB1 /* Constants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		9F53B9B71AB776E200B62E8B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */,
+				9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		9FBBFF5D1A5C5B9C00138ACE = {
 			isa = PBXGroup;
 			children = (
@@ -117,20 +183,12 @@
 		9FBBFF681A5C5B9C00138ACE /* ParseRevealer */ = {
 			isa = PBXGroup;
 			children = (
-				9F9AC9391A5D55DE00050FB1 /* Constants.h */,
-				9F9AC93A1A5D55DE00050FB1 /* Constants.m */,
-				9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */,
-				9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */,
-				9FBBFF701A5C5B9C00138ACE /* ViewController.h */,
-				9FBBFF711A5C5B9C00138ACE /* ViewController.m */,
-				9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */,
-				9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */,
-				9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */,
-				9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */,
-				9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */,
-				9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */,
-				9F1866601A5D425D00AFF30E /* NSString+Random.h */,
-				9F1866611A5D425D00AFF30E /* NSString+Random.m */,
+				9F53B9B31AB7766F00B62E8B /* Constants */,
+				9F53B9B71AB776E200B62E8B /* Models */,
+				9F53B9B21AB7766900B62E8B /* Controllers */,
+				9F53B9B11AB7766200B62E8B /* Helpers */,
+				9F53B9AF1AB7764200B62E8B /* Services */,
+				9F53B9B01AB7764900B62E8B /* Extensions */,
 				9FBBFF731A5C5B9C00138ACE /* Images.xcassets */,
 				9FBBFF751A5C5B9D00138ACE /* Main.storyboard */,
 				9FBBFF901A5C5CE400138ACE /* Frameworks */,
@@ -276,11 +334,13 @@
 			files = (
 				9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */,
 				9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */,
+				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
 				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
 				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
+				9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */,
 				9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
