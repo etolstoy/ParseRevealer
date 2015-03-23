@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
+		9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */; };
 		9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */; };
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
@@ -15,7 +16,7 @@
 		9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */; };
 		9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */; };
 		9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF6E1A5C5B9C00138ACE /* main.m */; };
-		9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF711A5C5B9C00138ACE /* ViewController.m */; };
+		9FBBFF721A5C5B9C00138ACE /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF711A5C5B9C00138ACE /* StartViewController.m */; };
 		9FBBFF741A5C5B9C00138ACE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF731A5C5B9C00138ACE /* Images.xcassets */; };
 		9FBBFF771A5C5B9D00138ACE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBFF751A5C5B9D00138ACE /* Main.storyboard */; };
 		9FBBFF831A5C5B9D00138ACE /* ParseRevealerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF821A5C5B9D00138ACE /* ParseRevealerTests.m */; };
@@ -54,6 +55,8 @@
 /* Begin PBXFileReference section */
 		9F1866601A5D425D00AFF30E /* NSString+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Random.h"; sourceTree = "<group>"; };
 		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
+		9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLRevealingViewController.h; sourceTree = "<group>"; };
+		9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLRevealingViewController.m; sourceTree = "<group>"; };
 		9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClassModel.h; sourceTree = "<group>"; };
 		9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClassModel.m; sourceTree = "<group>"; };
 		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
@@ -69,8 +72,8 @@
 		9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9FBBFF6E1A5C5B9C00138ACE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9FBBFF701A5C5B9C00138ACE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9FBBFF711A5C5B9C00138ACE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9FBBFF701A5C5B9C00138ACE /* StartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		9FBBFF711A5C5B9C00138ACE /* StartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		9FBBFF731A5C5B9C00138ACE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9FBBFF761A5C5B9D00138ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FBBFF7C1A5C5B9D00138ACE /* ParseRevealerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseRevealerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,8 +141,10 @@
 			children = (
 				9FBBFF6B1A5C5B9C00138ACE /* AppDelegate.h */,
 				9FBBFF6C1A5C5B9C00138ACE /* AppDelegate.m */,
-				9FBBFF701A5C5B9C00138ACE /* ViewController.h */,
-				9FBBFF711A5C5B9C00138ACE /* ViewController.m */,
+				9FBBFF701A5C5B9C00138ACE /* StartViewController.h */,
+				9FBBFF711A5C5B9C00138ACE /* StartViewController.m */,
+				9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */,
+				9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -333,7 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */,
-				9FBBFF721A5C5B9C00138ACE /* ViewController.m in Sources */,
+				9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */,
+				9FBBFF721A5C5B9C00138ACE /* StartViewController.m in Sources */,
 				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
