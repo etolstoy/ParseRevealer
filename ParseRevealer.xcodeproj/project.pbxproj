@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
 		9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */; };
+		9F4E09C31AC09DEE008690D4 /* StructureRevealingVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */; };
 		9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */; };
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
@@ -57,6 +58,8 @@
 		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
 		9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLRevealingViewController.h; sourceTree = "<group>"; };
 		9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLRevealingViewController.m; sourceTree = "<group>"; };
+		9F4E09C11AC09DEE008690D4 /* StructureRevealingVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureRevealingVIewController.h; sourceTree = "<group>"; };
+		9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealingVIewController.m; sourceTree = "<group>"; };
 		9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClassModel.h; sourceTree = "<group>"; };
 		9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClassModel.m; sourceTree = "<group>"; };
 		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				9FBBFF711A5C5B9C00138ACE /* StartViewController.m */,
 				9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */,
 				9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */,
+				9F4E09C11AC09DEE008690D4 /* StructureRevealingVIewController.h */,
+				9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
+				9F4E09C31AC09DEE008690D4 /* StructureRevealingVIewController.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
 				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
 				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
