@@ -752,9 +752,6 @@
                                     <rect key="frame" x="224" y="1" width="15" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.customClassesTextView" id="CIg-lC-t8X"/>
-                                </connections>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CXp-HJ-1iu">
                                 <rect key="frame" x="18" y="216" width="307" height="17"/>
@@ -789,6 +786,7 @@
                         <outlet property="clientKeyTextField" destination="aZD-Je-HTj" id="9hw-ZB-wVi"/>
                         <outlet property="connectActivityIndicator" destination="EiT-g0-wC5" id="GuS-Uv-iRW"/>
                         <outlet property="connectButton" destination="uG1-mF-n8M" id="7EQ-AY-sA2"/>
+                        <outlet property="customClassesTextView" destination="spe-rd-tE8" id="fPK-si-Wbq"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -852,13 +850,11 @@
                                     <rect key="frame" x="224" y="1" width="15" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <connections>
-                                    <binding destination="EQY-0u-zDw" name="hidden" keyPath="self.aclTextView" id="e73-b9-aj5"/>
-                                </connections>
                             </scrollView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="aclTextView" destination="XUT-nw-Rhu" id="Iv9-Kc-tap"/>
                         <outlet property="revealActivityIndicator" destination="FMx-ng-LLT" id="eln-b5-RlO"/>
                         <outlet property="revealButton" destination="Abq-iJ-C66" id="YEC-Rx-kHW"/>
                     </connections>

@@ -25,29 +25,31 @@
 
 @implementation ACLRevealingViewController
 
+#pragma mark - View Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.parseRevealService = [ParseRevealService new];
+    self.classStorageService = [ClassStorageService sharedInstance];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)revealButtonClicked:(id)sender {
     [self.revealActivityIndicator startAnimation:self];
-//    [self revealParseClassesFromUserInput:self.customClassesTextView.string];
+    [self revealParseClasses:[self.classStorageService.parseClasses allObjects]];
 }
 
-- (void)revealParseClassesFromUserInput:(NSString *)userInput {
-//    NSArray *customClassesNamesArray = [userInput componentsSeparatedByString:@"\n"];
-//    [self filterAndStoreClassesWithNames:customClassesNamesArray];
-    
-//    [self.parseRevealService getAclForCustomClasses:self.classStorageService.parseClasses completionBlock:^(NSArray *customClasses, NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
-//            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
-//            
-//            [self enableCustomClassesInterfaceArea:YES];
-//            [self.revealActivityIndicator stopAnimation:self];
-//        });
-//    }];
+#pragma mark - Private Methods
+
+- (void)revealParseClasses:(NSArray *)parseClasses {
+    [self.parseRevealService getAclForCustomClasses:parseClasses completionBlock:^(NSArray *customClasses, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
+            [self.revealActivityIndicator stopAnimation:self];
+        });
+    }];
 }
 
 

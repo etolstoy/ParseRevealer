@@ -17,6 +17,25 @@
 
 @implementation ClassStorageService
 
+#pragma mark - Initialization
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t pred;
+    static id sharedInstance = nil;
+    
+    dispatch_once(&pred, ^{
+        sharedInstance = [[[self class] alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.parseClasses = [NSSet new];
+    }
+    return self;
+}
+
 #pragma mark - Public Methods
 
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass {

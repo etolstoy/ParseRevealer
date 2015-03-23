@@ -14,16 +14,14 @@
 
 @interface StartViewController()
 
-@property (strong, nonatomic) ParseRevealService *parseRevealService;
 @property (strong, nonatomic) ClassStorageService *classStorageService;
+
+@property (strong, nonatomic) ParseRevealService *parseRevealService;
 
 @property (weak) IBOutlet NSTextField *applicationIdTextField;
 @property (weak) IBOutlet NSTextField *clientKeyTextField;
-
 @property (unsafe_unretained) IBOutlet NSTextView *customClassesTextView;
-
 @property (weak) IBOutlet NSButton *connectButton;
-
 @property (weak) IBOutlet NSProgressIndicator *connectActivityIndicator;
 
 @end
@@ -36,7 +34,7 @@
     [super viewDidLoad];
 
     self.parseRevealService = [ParseRevealService new];
-    self.classStorageService = [ClassStorageService new];
+    self.classStorageService = [ClassStorageService sharedInstance];
     [self enableCustomClassesInterfaceArea:NO];
 }
 

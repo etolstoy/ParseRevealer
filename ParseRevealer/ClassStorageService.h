@@ -11,6 +11,13 @@
 @interface ClassStorageService : NSObject
 
 /**
+ *  This class is represented as a singleton as it should be accessed from different controllers and hold the same instances of Parse Custom Classes everywhere.
+ *
+ *  @return ClassStorageService
+ */
++ (instancetype)sharedInstance;
+
+/**
  *  This method adds a new Parse Custom Class to the storage.
  *
  *  @param className                  The name of Parse Custom Class
