@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Egor Tolstoy. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "StartViewController.h"
 #import "ParseRevealService.h"
 #import "ACLFormatter.h"
 #import "ParseClassModel.h"
 #import "ClassStorageService.h"
 
-@interface ViewController()
+@interface StartViewController()
 
 @property (strong, nonatomic) ParseRevealService *parseRevealService;
 @property (strong, nonatomic) ClassStorageService *classStorageService;
@@ -21,17 +21,14 @@
 @property (weak) IBOutlet NSTextField *clientKeyTextField;
 
 @property (unsafe_unretained) IBOutlet NSTextView *customClassesTextView;
-@property (unsafe_unretained) IBOutlet NSTextView *aclTextView;
 
 @property (weak) IBOutlet NSButton *connectButton;
-@property (weak) IBOutlet NSButton *revealButton;
 
 @property (weak) IBOutlet NSProgressIndicator *connectActivityIndicator;
-@property (weak) IBOutlet NSProgressIndicator *revealActivityIndicator;
 
 @end
 
-@implementation ViewController
+@implementation StartViewController
 
 #pragma mark - View Life Cycle
 
@@ -64,11 +61,8 @@
                                         }];
 }
 
-- (IBAction)revealButtonClicked:(id)sender {
-    [self enableCustomClassesInterfaceArea:NO];
-    [self.revealActivityIndicator startAnimation:self];
-    
-    [self revealParseClassesFromUserInput:self.customClassesTextView.string];
+- (IBAction)saveButtonClicked:(id)sender {
+    [self saveParseClassesFromUserInput:self.customClassesTextView.string];
 }
 
 #pragma mark - Private Methods
@@ -80,23 +74,14 @@
 }
 
 - (void)enableCustomClassesInterfaceArea:(BOOL)enabled {
-    self.revealButton.enabled = enabled;
     self.customClassesTextView.editable = enabled;
     self.customClassesTextView.selectable = enabled;
 }
 
-- (void)revealParseClassesFromUserInput:(NSString *)userInput {
+- (void)saveParseClassesFromUserInput:(NSString *)userInput {
     NSArray *customClassesNamesArray = [userInput componentsSeparatedByString:@"\n"];
     [self filterAndStoreClassesWithNames:customClassesNamesArray];
-    
-    [self.parseRevealService getAclForCustomClasses:self.classStorageService.parseClasses completionBlock:^(NSArray *customClasses, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self.aclTextView setString:[ACLFormatter stringFromCustomClassesACLs:customClasses]];
-            
-            [self enableCustomClassesInterfaceArea:YES];
-            [self.revealActivityIndicator stopAnimation:self];
-        });
-    }];
+
 }
 
 - (void)filterAndStoreClassesWithNames:(NSArray *)classNames {
