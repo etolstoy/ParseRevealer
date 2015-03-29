@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ParseClassModel;
+
 @interface ClassStorageService : NSObject
 
 /**
@@ -24,6 +26,13 @@
  *  @param shouldReplaceExistingClass The flag indicating if the existing class should be replaced by the new one
  */
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass;
+
+/**
+ *  This method removes a specified Parse Custom Class from the storage.
+ *
+ *  @param parseClass                 The Parse Custom Class
+ */
+- (void)removeClass:(ParseClassModel *)parseClass;
 
 - (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className;
 

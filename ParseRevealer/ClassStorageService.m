@@ -51,6 +51,16 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
     }
 }
 
+- (void)removeClass:(ParseClassModel *)parseClass {
+    BOOL classExists = [self checkExistanceOfClassWithName:parseClass.className];
+    
+    if (classExists) {
+        NSMutableSet *mutableParseClasses = [self.parseClasses mutableCopy];
+        [mutableParseClasses removeObject:parseClass];
+        self.parseClasses = [mutableParseClasses copy];
+    }
+}
+
 - (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className {
     ParseClassModel *model = [self classModelWithName:className];
     NSDictionary *fieldDictionary = @{
