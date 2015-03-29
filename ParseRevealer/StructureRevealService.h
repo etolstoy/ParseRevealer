@@ -10,7 +10,7 @@
 
 @class  ParseClassModel;
 
-typedef void (^ParseStructureUpdateBlock)(ParseClassModel *model, NSString *fieldName, NSString *fieldType, NSError *error);
+typedef void (^ParseStructureUpdateBlock)(ParseClassModel *model, NSError *error);
 
 @interface StructureRevealService : NSObject
 

@@ -32,8 +32,8 @@
 
 - (IBAction)revealButtonTapped:(id)sender {
     NSArray *parseClassesArray = [self.classStorageService.parseClasses allObjects];
-    [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSString *fieldName, NSString *fieldType, NSError *error) {
-        [self.classStorageService addFieldWithName:fieldName type:fieldType forClassWithName:model.className];
+    [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSError *error) {
+        [self.classStorageService updateClass:model];
     }];
 }
 

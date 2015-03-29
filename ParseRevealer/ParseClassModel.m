@@ -10,6 +10,9 @@
 
 #import "ParseClassModel.h"
 
+static NSString *const ParseClassStructureFieldNameKey = @"fieldName";
+static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
+
 @interface ParseClassModel()
 
 @property (strong, nonatomic, readwrite) NSString *className;
@@ -43,6 +46,14 @@
         [mutablePermissions setObject:@(permissionCode) forKey:permissionKey];
     }
     self.permissions = [mutablePermissions copy];
+}
+
+- (void)updateStructureWithFieldName:(NSString *)fieldName fieldType:(NSString *)fieldType {
+    NSDictionary *fieldDictionary = @{
+                                      ParseClassStructureFieldNameKey : fieldName,
+                                      ParseClassStructureFieldTypeKey : fieldType
+                                      };
+    self.classStructure = [self.classStructure arrayByAddingObject:fieldDictionary];
 }
 
 - (void)updateClassStructure:(NSArray *)classStructure {

@@ -28,13 +28,18 @@
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass;
 
 /**
+ *  This method updates a specified Parse Custom Class.
+ *
+ *  @param parseClass                 The Parse Custom Class
+ */
+- (void)updateClass:(ParseClassModel *)parseClass;
+
+/**
  *  This method removes a specified Parse Custom Class from the storage.
  *
  *  @param parseClass                 The Parse Custom Class
  */
 - (void)removeClass:(ParseClassModel *)parseClass;
-
-- (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className;
 
 /**
  *  The array of all Parse Custom Classes stored in the service

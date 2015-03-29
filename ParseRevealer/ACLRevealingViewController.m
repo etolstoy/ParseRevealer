@@ -37,6 +37,7 @@
 #pragma mark - IBActions
 
 - (IBAction)revealButtonClicked:(id)sender {
+    self.aclTextView.string = @"";
     [self.revealActivityIndicator startAnimation:self];
     [self revealParseClasses:[self.classStorageService.parseClasses allObjects]];
 }

@@ -9,9 +9,6 @@
 #import "ClassStorageService.h"
 #import "ParseClassModel.h"
 
-static NSString *const ParseClassStructureFieldNameKey = @"fieldName";
-static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
-
 @interface ClassStorageService()
 
 @property (strong, nonatomic, readwrite) NSSet *parseClasses;
@@ -58,17 +55,6 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
         NSMutableSet *mutableParseClasses = [self.parseClasses mutableCopy];
         [mutableParseClasses removeObject:parseClass];
         self.parseClasses = [mutableParseClasses copy];
-    }
-}
-
-- (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className {
-    ParseClassModel *model = [self classModelWithName:className];
-    NSDictionary *fieldDictionary = @{
-                                      ParseClassStructureFieldNameKey : fieldName,
-                                      ParseClassStructureFieldTypeKey : fieldType
-                                      };
-    if (![model.classStructure containsObject:fieldDictionary]) {
-        [model updateClassStructure:[model.classStructure arrayByAddingObject:fieldDictionary]];
     }
 }
 
