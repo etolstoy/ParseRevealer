@@ -34,6 +34,8 @@
 
 - (void)updateClassStructure:(NSArray *)classStructure;
 
+- (NSArray *)allFields;
+
 /**
  *  The name of Parse Custom Class
  */

@@ -29,11 +29,21 @@
     PFQuery *query = [PFQuery queryWithClassName:class.className];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            
-        }
+        [self processObjects:objects forCustomClass:class];
     }];
 }
 
+- (void)processObjects:(NSArray *)objects forCustomClass:(ParseClassModel *)class
+{
+    for (PFObject *object in objects) {
+        NSArray *objectKeys = object.allKeys;
+        for (NSString *fieldName in objectKeys) {
+            if (![[class allFields] containsObject:fieldName]) {
+                NSString *fieldType = NSStringFromClass([object[fieldName] class]);
+                [class updateStructureWithFieldName:fieldName fieldType:fieldType];
+            }
+        }
+    }
+}
 
 @end

@@ -29,6 +29,7 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
     if (self = [super init]) {
         self.className = className;
         
+        self.classStructure = @[];
         self.permissions = [self defaultPermissionDictionary];
     }
     return self;
@@ -39,6 +40,14 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
 }
 
 #pragma mark - Public Methods
+
+- (NSArray *)allFields {
+    NSMutableArray *mutableFields = [@[] mutableCopy];
+    for (NSDictionary *fieldDictionary in self.classStructure) {
+        [mutableFields addObject:fieldDictionary[ParseClassStructureFieldNameKey]];
+    }
+    return [mutableFields copy];
+}
 
 - (void)updatePermission:(NSString *)permissionKey withValue:(ParseACLPermissionCode)permissionCode {
     NSMutableDictionary *mutablePermissions = [self.permissions mutableCopy];
