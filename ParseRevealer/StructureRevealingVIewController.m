@@ -6,17 +6,35 @@
 //  Copyright (c) 2015 Egor Tolstoy. All rights reserved.
 //
 
-#import "StructureRevealingVIewController.h"
+#import "StructureRevealingViewController.h"
+#import "StructureRevealService.h"
+#import "ClassStorageService.h"
+#import "ParseClassModel.h"
 
-@interface StructureRevealingVIewController ()
+@interface StructureRevealingViewController ()
+
+@property (weak) IBOutlet NSProgressIndicator *activityIndicator;
+@property (unsafe_unretained) IBOutlet NSTextView *classNamesTextView;
+
+@property (strong, nonatomic) StructureRevealService *structureRevealService;
+@property (strong, nonatomic) ClassStorageService *classStorageService;
 
 @end
 
-@implementation StructureRevealingVIewController
+@implementation StructureRevealingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    
+    self.structureRevealService = [[StructureRevealService alloc] init];
+    self.classStorageService = [ClassStorageService sharedInstance];
+}
+
+- (IBAction)revealButtonTapped:(id)sender {
+    NSArray *parseClassesArray = [self.classStorageService.parseClasses allObjects];
+    [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSString *fieldName, NSString *fieldType, NSError *error) {
+        [self.classStorageService addFieldWithName:fieldName type:fieldType forClassWithName:model.className];
+    }];
 }
 
 @end

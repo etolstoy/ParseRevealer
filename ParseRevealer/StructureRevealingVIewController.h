@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StructureRevealingVIewController : NSViewController
+@interface StructureRevealingViewController : NSViewController
 
 @end

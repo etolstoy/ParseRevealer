@@ -25,6 +25,8 @@
  */
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass;
 
+- (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className;
+
 /**
  *  The array of all Parse Custom Classes stored in the service
  */

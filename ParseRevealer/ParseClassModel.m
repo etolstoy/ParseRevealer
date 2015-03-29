@@ -45,6 +45,10 @@
     self.permissions = [mutablePermissions copy];
 }
 
+- (void)updateClassStructure:(NSArray *)classStructure {
+    self.classStructure = classStructure;
+}
+
 #pragma mark - Private Methods
 
 - (NSDictionary *)defaultPermissionDictionary {

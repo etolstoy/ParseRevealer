@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1866611A5D425D00AFF30E /* NSString+Random.m */; };
 		9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */; };
-		9F4E09C31AC09DEE008690D4 /* StructureRevealingVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */; };
+		9F4E09C31AC09DEE008690D4 /* StructureRevealingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E09C21AC09DEE008690D4 /* StructureRevealingViewController.m */; };
 		9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */; };
 		9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */; };
 		9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */; };
@@ -26,6 +26,7 @@
 		9FBBFF991A5C5F5D00138ACE /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; };
 		9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */; };
+		9FE5773C1AC86B0D00D2E641 /* StructureRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +59,8 @@
 		9F1866611A5D425D00AFF30E /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
 		9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLRevealingViewController.h; sourceTree = "<group>"; };
 		9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLRevealingViewController.m; sourceTree = "<group>"; };
-		9F4E09C11AC09DEE008690D4 /* StructureRevealingVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureRevealingVIewController.h; sourceTree = "<group>"; };
-		9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealingVIewController.m; sourceTree = "<group>"; };
+		9F4E09C11AC09DEE008690D4 /* StructureRevealingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureRevealingViewController.h; sourceTree = "<group>"; };
+		9F4E09C21AC09DEE008690D4 /* StructureRevealingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealingViewController.m; sourceTree = "<group>"; };
 		9F53B9B41AB776DD00B62E8B /* ParseClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClassModel.h; sourceTree = "<group>"; };
 		9F53B9B51AB776DD00B62E8B /* ParseClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClassModel.m; sourceTree = "<group>"; };
 		9F9AC9331A5D4C0100050FB1 /* PermissionCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionCheckingService.h; sourceTree = "<group>"; };
@@ -86,6 +87,8 @@
 		9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
 		9FBBFF9C1A5C612C00138ACE /* ParseRevealService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseRevealService.h; sourceTree = "<group>"; };
 		9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseRevealService.m; sourceTree = "<group>"; };
+		9FE5773A1AC86B0D00D2E641 /* StructureRevealService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureRevealService.h; sourceTree = "<group>"; };
+		9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				9F9AC9341A5D4C0100050FB1 /* PermissionCheckingService.m */,
 				9FB3B0A31ABA10580075EE01 /* ClassStorageService.h */,
 				9FB3B0A41ABA10580075EE01 /* ClassStorageService.m */,
+				9FE5773A1AC86B0D00D2E641 /* StructureRevealService.h */,
+				9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -148,8 +153,8 @@
 				9FBBFF711A5C5B9C00138ACE /* StartViewController.m */,
 				9F4E09BE1AC094DF008690D4 /* ACLRevealingViewController.h */,
 				9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */,
-				9F4E09C11AC09DEE008690D4 /* StructureRevealingVIewController.h */,
-				9F4E09C21AC09DEE008690D4 /* StructureRevealingVIewController.m */,
+				9F4E09C11AC09DEE008690D4 /* StructureRevealingViewController.h */,
+				9F4E09C21AC09DEE008690D4 /* StructureRevealingViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -348,8 +353,9 @@
 				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
-				9F4E09C31AC09DEE008690D4 /* StructureRevealingVIewController.m in Sources */,
+				9F4E09C31AC09DEE008690D4 /* StructureRevealingViewController.m in Sources */,
 				9FBBFF6F1A5C5B9C00138ACE /* main.m in Sources */,
+				9FE5773C1AC86B0D00D2E641 /* StructureRevealService.m in Sources */,
 				9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */,
 				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
 				9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */,

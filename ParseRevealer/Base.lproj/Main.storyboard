@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="ltG-ZJ-1bX">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="ltG-ZJ-1bX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -875,19 +875,19 @@
         <!--Structure Revealing-->
         <scene sceneID="j4b-hW-XdL">
             <objects>
-                <viewController title="Structure Revealing" id="LMy-zf-bbc" customClass="StructureRevealingVIewController" sceneMemberID="viewController">
+                <viewController title="Structure Revealing" id="LMy-zf-bbc" customClass="StructureRevealingViewController" sceneMemberID="viewController">
                     <view key="view" id="aci-aV-6YV">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="462"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-Bx-XrK">
-                                <rect key="frame" x="14" y="130" width="152" height="32"/>
+                                <rect key="frame" x="14" y="131" width="152" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reveal" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vfo-yI-XPY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="revealButtonClicked:" target="EQY-0u-zDw" id="dWJ-6d-gBF"/>
+                                    <action selector="revealButtonTapped:" target="LMy-zf-bbc" id="q3e-3c-QOz"/>
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5t-je-0zT">
@@ -933,13 +933,17 @@
                                 <rect key="frame" x="18" y="317" width="421" height="125"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="9o9-H1-oyO">
                                     <font key="font" metaFont="system"/>
-                                    <mutableString key="title">Here you can reveal the structure of the Parse Custom Classes listed in the first tab. The structure can be revealed only for the classes with active FIND and GET permissions.  This can be a rather long procedure, especially for the classes with a large number of rows, so prepare to wait.</mutableString>
+                                    <string key="title">Here you can reveal the structure of the Parse Custom Classes listed in the first tab. The structure can be revealed only for the classes with active FIND and GET permissions.  This can be a rather long procedure, especially for the classes with a large number of rows, so prepare to wait.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="h9x-FQ-IR6" id="PYG-0U-Fhb"/>
+                        <outlet property="classNamesTextView" destination="wvI-hM-0AY" id="8Jc-0f-OYW"/>
+                    </connections>
                 </viewController>
                 <customObject id="1WL-ll-cet" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

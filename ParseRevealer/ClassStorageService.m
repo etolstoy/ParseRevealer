@@ -9,6 +9,9 @@
 #import "ClassStorageService.h"
 #import "ParseClassModel.h"
 
+static NSString *const ParseClassStructureFieldNameKey = @"fieldName";
+static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
+
 @interface ClassStorageService()
 
 @property (strong, nonatomic, readwrite) NSSet *parseClasses;
@@ -48,7 +51,27 @@
     }
 }
 
+- (void)addFieldWithName:(NSString *)fieldName type:(NSString *)fieldType forClassWithName:(NSString *)className {
+    ParseClassModel *model = [self classModelWithName:className];
+    NSDictionary *fieldDictionary = @{
+                                      ParseClassStructureFieldNameKey : fieldName,
+                                      ParseClassStructureFieldTypeKey : fieldType
+                                      };
+    if (![model.classStructure containsObject:fieldDictionary]) {
+        [model updateClassStructure:[model.classStructure arrayByAddingObject:fieldDictionary]];
+    }
+}
+
 #pragma mark - Private Methods
+
+- (ParseClassModel *)classModelWithName:(NSString *)className {
+    for (ParseClassModel *classModel in self.parseClasses) {
+        if ([classModel.className isEqualToString:className]) {
+            return classModel;
+        }
+    }
+    return nil;
+}
 
 - (BOOL)checkExistanceOfClassWithName:(NSString *)className {
     for (ParseClassModel *classModel in self.parseClasses) {
