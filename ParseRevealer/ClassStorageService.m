@@ -48,6 +48,18 @@
     }
 }
 
+- (void)updateClass:(ParseClassModel *)parseClass {
+    BOOL classExists = [self checkExistanceOfClassWithName:parseClass.className];
+    
+    if (classExists) {
+        NSMutableSet *mutableParseClasses = [self.parseClasses mutableCopy];
+        ParseClassModel *oldClass = [self classModelWithName:parseClass.className];
+        [mutableParseClasses removeObject:oldClass];
+        [mutableParseClasses addObject:parseClass];
+        self.parseClasses = [mutableParseClasses copy];
+    }
+}
+
 - (void)removeClass:(ParseClassModel *)parseClass {
     BOOL classExists = [self checkExistanceOfClassWithName:parseClass.className];
     

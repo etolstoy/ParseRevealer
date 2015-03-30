@@ -11,6 +11,8 @@
 
 #import <ParseOSX/ParseOSX.h>
 
+static NSInteger const ParsePagingLimit = 1000;
+
 @implementation StructureRevealService
 
 #pragma mark - Public Methods
@@ -27,13 +29,20 @@
 - (void)revealStructureForCustomClass:(ParseClassModel *)class withUpdateBlock:(ParseStructureUpdateBlock)updateBlock
 {
     PFQuery *query = [PFQuery queryWithClassName:class.className];
+    [query orderByDescending:@"createdAt"];
+    query.limit = ParsePagingLimit;
+    __block NSInteger currentPagesNumber = 0;
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self processObjects:objects forCustomClass:class];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        while (number > currentPagesNumber) {
+            NSArray *objects = [query findObjects];
+            [self processObjects:objects forCustomClass:class withUpdateBlock:updateBlock];
+            currentPagesNumber += ParsePagingLimit;
+        }
     }];
 }
 
-- (void)processObjects:(NSArray *)objects forCustomClass:(ParseClassModel *)class
+- (void)processObjects:(NSArray *)objects forCustomClass:(ParseClassModel *)class withUpdateBlock:(ParseStructureUpdateBlock)updateBlock
 {
     for (PFObject *object in objects) {
         NSArray *objectKeys = object.allKeys;
@@ -41,6 +50,7 @@
             if (![[class allFields] containsObject:fieldName]) {
                 NSString *fieldType = NSStringFromClass([object[fieldName] class]);
                 [class updateStructureWithFieldName:fieldName fieldType:fieldType];
+                updateBlock(class, nil);
             }
         }
     }

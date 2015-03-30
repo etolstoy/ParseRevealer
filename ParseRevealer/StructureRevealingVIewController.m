@@ -34,6 +34,7 @@
     NSArray *parseClassesArray = [self.classStorageService.parseClasses allObjects];
     [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSError *error) {
         [self.classStorageService updateClass:model];
+        self.classNamesTextView.string = model.allFields.description;
     }];
 }
 
