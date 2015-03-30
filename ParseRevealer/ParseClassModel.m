@@ -29,7 +29,7 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
     if (self = [super init]) {
         self.className = className;
         
-        self.classStructure = @[];
+        self.classStructure = [self defaultStructureArray];
         self.permissions = [self defaultPermissionDictionary];
     }
     return self;
@@ -80,6 +80,23 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
              ParseDeletePermissionKey : @(ParseACLPermissionUnknown),
              ParseAddFieldsPermissionKey : @(ParseACLPermissionUnknown)
              };
+}
+
+- (NSArray *)defaultStructureArray {
+    return @[
+             @{
+                 ParseClassStructureFieldNameKey : @"objectId",
+                 ParseClassStructureFieldTypeKey : @"String"
+                 },
+             @{
+                 ParseClassStructureFieldNameKey : @"createdAt",
+                 ParseClassStructureFieldTypeKey : @"Date"
+                 },
+             @{
+                 ParseClassStructureFieldNameKey : @"updatedAt",
+                 ParseClassStructureFieldTypeKey : @"Date"
+                 },
+             ];
 }
 
 @end
