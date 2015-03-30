@@ -27,6 +27,7 @@
 		9FBBFF9A1A5C5F5D00138ACE /* ParseOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBBFF8D1A5C5CDA00138ACE /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */; };
 		9FE5773C1AC86B0D00D2E641 /* StructureRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */; };
+		9FE5773F1AC9A88600D2E641 /* StructureFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseRevealService.m; sourceTree = "<group>"; };
 		9FE5773A1AC86B0D00D2E641 /* StructureRevealService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureRevealService.h; sourceTree = "<group>"; };
 		9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealService.m; sourceTree = "<group>"; };
+		9FE5773D1AC9A88500D2E641 /* StructureFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureFormatter.h; sourceTree = "<group>"; };
+		9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 			children = (
 				9F9AC9361A5D55A400050FB1 /* ACLFormatter.h */,
 				9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */,
+				9FE5773D1AC9A88500D2E641 /* StructureFormatter.h */,
+				9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */,
 				9FBBFF721A5C5B9C00138ACE /* StartViewController.m in Sources */,
 				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
+				9FE5773F1AC9A88600D2E641 /* StructureFormatter.m in Sources */,
 				9F9AC9381A5D55A400050FB1 /* ACLFormatter.m in Sources */,
 				9F9AC93B1A5D55DE00050FB1 /* Constants.m in Sources */,
 				9F4E09C31AC09DEE008690D4 /* StructureRevealingViewController.m in Sources */,

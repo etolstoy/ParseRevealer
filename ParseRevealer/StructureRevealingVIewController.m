@@ -10,6 +10,7 @@
 #import "StructureRevealService.h"
 #import "ClassStorageService.h"
 #import "ParseClassModel.h"
+#import "StructureFormatter.h"
 
 @interface StructureRevealingViewController ()
 
@@ -34,7 +35,9 @@
     NSArray *parseClassesArray = [self.classStorageService.parseClasses allObjects];
     [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSError *error) {
         [self.classStorageService updateClass:model];
-        self.classNamesTextView.string = model.allFields.description;
+        
+        NSString *structureString = [StructureFormatter stringFromCustomClasses:self.classStorageService.parseClasses.allObjects];
+        self.classNamesTextView.string = structureString;
     }];
 }
 
