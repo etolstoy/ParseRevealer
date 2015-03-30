@@ -14,6 +14,7 @@
 
 @interface StructureRevealingViewController ()
 
+@property (weak) IBOutlet NSButton *revealButton;
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
 @property (unsafe_unretained) IBOutlet NSTextView *classNamesTextView;
 
@@ -29,6 +30,22 @@
     
     self.structureRevealService = [[StructureRevealService alloc] init];
     self.classStorageService = [ClassStorageService sharedInstance];
+}
+
+- (void)viewWillAppear {
+    if (self.classStorageService.parseClasses.count > 0) {
+        self.revealButton.enabled = YES;
+        self.classNamesTextView.string = @"";
+        if (self.classStorageService.structuredParseClasses.count == 0) {
+            self.revealButton.enabled = NO;
+            self.classNamesTextView.string = @"It seems that either you haven't revealed the permissions of your classes, or none of them has the turned on FIND permission. Go to the previous tab and check it.";
+        }
+    } else {
+        self.revealButton.enabled = NO;
+        self.classNamesTextView.string = @"It seems that you haven't added any of the Parse Custom Classes on the Basic Setup tab. Add them, press 'Save' and then proceed to the current tab.";
+    }
+    
+    
 }
 
 - (IBAction)revealButtonTapped:(id)sender {

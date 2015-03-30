@@ -45,5 +45,6 @@
  *  The array of all Parse Custom Classes stored in the service
  */
 @property (strong, nonatomic, readonly) NSSet *parseClasses;
+@property (strong, nonatomic, readonly) NSSet *structuredParseClasses;
 
 @end

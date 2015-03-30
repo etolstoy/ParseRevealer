@@ -943,6 +943,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="h9x-FQ-IR6" id="PYG-0U-Fhb"/>
                         <outlet property="classNamesTextView" destination="wvI-hM-0AY" id="8Jc-0f-OYW"/>
+                        <outlet property="revealButton" destination="Adu-Bx-XrK" id="Hbp-NW-Rnb"/>
                     </connections>
                 </viewController>
                 <customObject id="1WL-ll-cet" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

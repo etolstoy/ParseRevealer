@@ -8,6 +8,7 @@
 
 #import "ClassStorageService.h"
 #import "ParseClassModel.h"
+#import "Constants.h"
 
 @interface ClassStorageService()
 
@@ -68,6 +69,17 @@
         [mutableParseClasses removeObject:parseClass];
         self.parseClasses = [mutableParseClasses copy];
     }
+}
+
+- (NSSet *)structuredParseClasses {
+    NSMutableSet *mutableParseClasses = [NSMutableSet new];
+    for (ParseClassModel *model in self.parseClasses) {
+        NSDictionary *aclDictionary = model.permissions;
+        if ([aclDictionary[ParseFindPermissionKey] integerValue] == ParseACLPermissionTrue) {
+            [mutableParseClasses addObject:model];
+        }
+    }
+    return [mutableParseClasses copy];
 }
 
 #pragma mark - Private Methods
