@@ -13,6 +13,8 @@
 @interface ClassStorageService()
 
 @property (strong, nonatomic, readwrite) NSSet *parseClasses;
+@property (strong, nonatomic, readwrite) NSString *applicationId;
+@property (strong, nonatomic, readwrite) NSString *clientKey;
 
 @end
 
@@ -38,6 +40,11 @@
 }
 
 #pragma mark - Public Methods
+
+- (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
+    self.applicationId = applicationId;
+    self.clientKey = clientKey;
+}
 
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass {
     BOOL classExists = [self checkExistanceOfClassWithName:className];

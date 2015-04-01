@@ -53,6 +53,7 @@
                                             
                                             if (!error) {
                                                 [self enableCustomClassesInterfaceArea:YES];
+                                                [self.classStorageService setApplicationId:self.applicationIdTextField.stringValue clientKey:self.clientKeyTextField.stringValue];
                                             } else {
                                                 [self enableCustomClassesInterfaceArea:NO];
                                             }

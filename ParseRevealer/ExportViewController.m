@@ -56,7 +56,7 @@
 #pragma mark - Private Methods
 
 - (NSString *)exportString {
-    NSString *outputString = [ExportFormatter stringFromCustomClasses:self.classStorageService.parseClasses.allObjects];
+    NSString *outputString = [ExportFormatter stringFromCustomClasses:self.classStorageService.parseClasses.allObjects applicationId:self.classStorageService.applicationId clientKey:self.classStorageService.clientKey];
     return outputString;
 }
 

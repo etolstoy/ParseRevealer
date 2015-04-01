@@ -10,6 +10,15 @@
 
 @interface ExportFormatter : NSObject
 
-+ (NSString *)stringFromCustomClasses:(NSArray *)customClasses;
+/**
+ *  Method generates a proper output string for multiple classes
+ *
+ *  @param customClasses NSArray of ParseClassModels
+ *  @param applicationId Current applicationId
+ *  @param clientKey     Current clientKey
+ *
+ *  @return Output string
+ */
++ (NSString *)stringFromCustomClasses:(NSArray *)customClasses applicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
 
 @end

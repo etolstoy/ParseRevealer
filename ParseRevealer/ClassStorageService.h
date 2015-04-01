@@ -20,6 +20,14 @@
 + (instancetype)sharedInstance;
 
 /**
+ *  This method saves inputted keys to the storage
+ *
+ *  @param applicationId  The ApplicationId key
+ *  @param clientKey      The ClientKey
+ */
+- (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
+
+/**
  *  This method adds a new Parse Custom Class to the storage.
  *
  *  @param className                  The name of Parse Custom Class
@@ -46,5 +54,8 @@
  */
 @property (strong, nonatomic, readonly) NSSet *parseClasses;
 @property (strong, nonatomic, readonly) NSSet *structuredParseClasses;
+
+@property (strong, nonatomic, readonly) NSString *applicationId;
+@property (strong, nonatomic, readonly) NSString *clientKey;
 
 @end

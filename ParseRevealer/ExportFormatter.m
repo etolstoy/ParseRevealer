@@ -15,9 +15,11 @@ static NSString *const ParseClassStructureFieldTypeKey = @"fieldType";
 
 @implementation ExportFormatter
 
-+ (NSString *)stringFromCustomClasses:(NSArray *)customClasses {
++ (NSString *)stringFromCustomClasses:(NSArray *)customClasses applicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
     NSMutableString *outputString = [NSMutableString new];
     [outputString appendString:@"Parse Revealer v.0.2\n\n"];
+    [outputString appendString:[NSString stringWithFormat:@"applicationId: %@\n", applicationId]];
+    [outputString appendString:[NSString stringWithFormat:@"clientKey: %@\n\n", clientKey]];
     
     for (ParseClassModel *classModel in customClasses) {
         [outputString appendString:[NSString stringWithFormat:@"========== %@ ==========\n\n", classModel.className]];
