@@ -10,6 +10,13 @@
 
 @interface StructureFormatter : NSObject
 
+/**
+ *  Method generates a proper output string for multiple classes structure
+ *
+ *  @param customClasses NSArray of ParseClassModels
+ *
+ *  @return Output string
+ */
 + (NSString *)stringFromCustomClasses:(NSArray *)customClasses;
 
 @end

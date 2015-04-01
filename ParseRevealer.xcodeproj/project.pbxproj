@@ -28,6 +28,8 @@
 		9FBBFF9E1A5C612D00138ACE /* ParseRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBFF9D1A5C612D00138ACE /* ParseRevealService.m */; };
 		9FE5773C1AC86B0D00D2E641 /* StructureRevealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */; };
 		9FE5773F1AC9A88600D2E641 /* StructureFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */; };
+		9FE577421ACB26DD00D2E641 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE577411ACB26DC00D2E641 /* ExportViewController.m */; };
+		9FE577451ACC6D6A00D2E641 /* ExportFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE577441ACC6D6A00D2E641 /* ExportFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,10 @@
 		9FE5773B1AC86B0D00D2E641 /* StructureRevealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureRevealService.m; sourceTree = "<group>"; };
 		9FE5773D1AC9A88500D2E641 /* StructureFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureFormatter.h; sourceTree = "<group>"; };
 		9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureFormatter.m; sourceTree = "<group>"; };
+		9FE577401ACB26DC00D2E641 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
+		9FE577411ACB26DC00D2E641 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
+		9FE577431ACC6D6A00D2E641 /* ExportFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportFormatter.h; sourceTree = "<group>"; };
+		9FE577441ACC6D6A00D2E641 /* ExportFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,8 @@
 				9F9AC9371A5D55A400050FB1 /* ACLFormatter.m */,
 				9FE5773D1AC9A88500D2E641 /* StructureFormatter.h */,
 				9FE5773E1AC9A88500D2E641 /* StructureFormatter.m */,
+				9FE577431ACC6D6A00D2E641 /* ExportFormatter.h */,
+				9FE577441ACC6D6A00D2E641 /* ExportFormatter.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -160,6 +168,8 @@
 				9F4E09BF1AC094DF008690D4 /* ACLRevealingViewController.m */,
 				9F4E09C11AC09DEE008690D4 /* StructureRevealingViewController.h */,
 				9F4E09C21AC09DEE008690D4 /* StructureRevealingViewController.m */,
+				9FE577401ACB26DC00D2E641 /* ExportViewController.h */,
+				9FE577411ACB26DC00D2E641 /* ExportViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +364,7 @@
 			files = (
 				9F9AC9351A5D4C0100050FB1 /* PermissionCheckingService.m in Sources */,
 				9F4E09C01AC094DF008690D4 /* ACLRevealingViewController.m in Sources */,
+				9FE577451ACC6D6A00D2E641 /* ExportFormatter.m in Sources */,
 				9FBBFF721A5C5B9C00138ACE /* StartViewController.m in Sources */,
 				9F53B9B61AB776DD00B62E8B /* ParseClassModel.m in Sources */,
 				9FE5773F1AC9A88600D2E641 /* StructureFormatter.m in Sources */,
@@ -366,6 +377,7 @@
 				9F1866621A5D425E00AFF30E /* NSString+Random.m in Sources */,
 				9FB3B0A51ABA10580075EE01 /* ClassStorageService.m in Sources */,
 				9FBBFF6D1A5C5B9C00138ACE /* AppDelegate.m in Sources */,
+				9FE577421ACB26DD00D2E641 /* ExportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

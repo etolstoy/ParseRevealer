@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParseRevealer/ClassStorageService.m"
-            timestampString = "449344608.048555"
+            filePath = "ParseRevealer/ExportViewController.m"
+            timestampString = "449606132.699997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-removeClass:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-exportButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,9 +11,10 @@
 @class  ParseClassModel;
 
 typedef void (^ParseStructureUpdateBlock)(ParseClassModel *model, NSError *error);
+typedef void (^ParseStructureCompletionBlock)(NSError *error);
 
 @interface StructureRevealService : NSObject
 
-- (void)startRevealingStructureForCustomClasses:(NSArray *)customClassesArray updateBlock:(ParseStructureUpdateBlock)updateBlock;
+- (void)startRevealingStructureForCustomClasses:(NSArray *)customClassesArray updateBlock:(ParseStructureUpdateBlock)updateBlock completionBlock:(ParseStructureCompletionBlock)completionBlock;
 
 @end

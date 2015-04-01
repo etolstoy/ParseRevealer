@@ -17,6 +17,7 @@
 @property (weak) IBOutlet NSButton *revealButton;
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
 @property (unsafe_unretained) IBOutlet NSTextView *classNamesTextView;
+@property (weak) IBOutlet NSTextField *classNamesLabel;
 
 @property (strong, nonatomic) StructureRevealService *structureRevealService;
 @property (strong, nonatomic) ClassStorageService *classStorageService;
@@ -44,17 +45,18 @@
         self.revealButton.enabled = NO;
         self.classNamesTextView.string = @"It seems that you haven't added any of the Parse Custom Classes on the Basic Setup tab. Add them, press 'Save' and then proceed to the current tab.";
     }
-    
-    
 }
 
 - (IBAction)revealButtonTapped:(id)sender {
     NSArray *parseClassesArray = [self.classStorageService.parseClasses allObjects];
+    [self.activityIndicator startAnimation:self];
     [self.structureRevealService startRevealingStructureForCustomClasses:parseClassesArray updateBlock:^(ParseClassModel *model, NSError *error) {
         [self.classStorageService updateClass:model];
         
         NSString *structureString = [StructureFormatter stringFromCustomClasses:self.classStorageService.parseClasses.allObjects];
         self.classNamesTextView.string = structureString;
+    } completionBlock:^(NSError *error) {
+        [self.activityIndicator stopAnimation:self];
     }];
 }
 

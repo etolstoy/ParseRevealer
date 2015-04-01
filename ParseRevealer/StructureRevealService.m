@@ -17,16 +17,25 @@ static NSInteger const ParsePagingLimit = 1000;
 
 #pragma mark - Public Methods
 
-- (void)startRevealingStructureForCustomClasses:(NSArray *)customClassesArray updateBlock:(ParseStructureUpdateBlock)updateBlock
+- (void)startRevealingStructureForCustomClasses:(NSArray *)customClassesArray updateBlock:(ParseStructureUpdateBlock)updateBlock completionBlock:(ParseStructureCompletionBlock)completionBlock
 {
+    dispatch_group_t group = dispatch_group_create();
+    
     for (ParseClassModel *class in customClassesArray) {
-        [self revealStructureForCustomClass:class withUpdateBlock:updateBlock];
+        dispatch_group_enter(group);
+        [self revealStructureForCustomClass:class withUpdateBlock:updateBlock completionBlock:^(NSError *error) {
+            dispatch_group_leave(group);
+        }];
     }
+    
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),^{
+        completionBlock(nil);
+    });
 }
 
 #pragma mark - Private Classes
 
-- (void)revealStructureForCustomClass:(ParseClassModel *)class withUpdateBlock:(ParseStructureUpdateBlock)updateBlock
+- (void)revealStructureForCustomClass:(ParseClassModel *)class withUpdateBlock:(ParseStructureUpdateBlock)updateBlock completionBlock:(ParseStructureCompletionBlock)completionBlock
 {
     PFQuery *query = [PFQuery queryWithClassName:class.className];
     [query orderByDescending:@"createdAt"];
@@ -39,6 +48,7 @@ static NSInteger const ParsePagingLimit = 1000;
             [self processObjects:objects forCustomClass:class withUpdateBlock:updateBlock];
             currentPagesNumber += ParsePagingLimit;
         }
+        completionBlock(nil);
     }];
 }
 
