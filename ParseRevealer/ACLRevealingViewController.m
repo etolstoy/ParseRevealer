@@ -34,9 +34,20 @@
     self.classStorageService = [ClassStorageService sharedInstance];
 }
 
+- (void)viewWillAppear {
+    if (self.classStorageService.parseClasses.count > 0) {
+        self.revealButton.enabled = YES;
+        self.aclTextView.string = @"";
+    } else {
+        self.revealButton.enabled = NO;
+        self.aclTextView.string = @"It seems that you haven't added any of the Parse Custom Classes on the Basic Setup tab. Add them, press 'Save' and then proceed to the current tab.";
+    }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)revealButtonClicked:(id)sender {
+    self.aclTextView.string = @"";
     [self.revealActivityIndicator startAnimation:self];
     [self revealParseClasses:[self.classStorageService.parseClasses allObjects]];
 }

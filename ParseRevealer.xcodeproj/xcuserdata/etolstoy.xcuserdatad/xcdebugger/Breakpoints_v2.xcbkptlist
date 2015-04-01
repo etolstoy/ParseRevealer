@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParseRevealer/ACLRevealingViewController.m"
-            timestampString = "448830317.287617"
+            filePath = "ParseRevealer/ExportViewController.m"
+            timestampString = "449606132.699997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-revealParseClasses:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-exportButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

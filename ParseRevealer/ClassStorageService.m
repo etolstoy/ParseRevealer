@@ -8,10 +8,13 @@
 
 #import "ClassStorageService.h"
 #import "ParseClassModel.h"
+#import "Constants.h"
 
 @interface ClassStorageService()
 
 @property (strong, nonatomic, readwrite) NSSet *parseClasses;
+@property (strong, nonatomic, readwrite) NSString *applicationId;
+@property (strong, nonatomic, readwrite) NSString *clientKey;
 
 @end
 
@@ -38,6 +41,11 @@
 
 #pragma mark - Public Methods
 
+- (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
+    self.applicationId = applicationId;
+    self.clientKey = clientKey;
+}
+
 - (void)addClassWithName:(NSString *)className shouldReplaceExistingClass:(BOOL)shouldReplaceExistingClass {
     BOOL classExists = [self checkExistanceOfClassWithName:className];
     
@@ -48,7 +56,49 @@
     }
 }
 
+- (void)updateClass:(ParseClassModel *)parseClass {
+    BOOL classExists = [self checkExistanceOfClassWithName:parseClass.className];
+    
+    if (classExists) {
+        NSMutableSet *mutableParseClasses = [self.parseClasses mutableCopy];
+        ParseClassModel *oldClass = [self classModelWithName:parseClass.className];
+        [mutableParseClasses removeObject:oldClass];
+        [mutableParseClasses addObject:parseClass];
+        self.parseClasses = [mutableParseClasses copy];
+    }
+}
+
+- (void)removeClass:(ParseClassModel *)parseClass {
+    BOOL classExists = [self checkExistanceOfClassWithName:parseClass.className];
+    
+    if (classExists) {
+        NSMutableSet *mutableParseClasses = [self.parseClasses mutableCopy];
+        [mutableParseClasses removeObject:parseClass];
+        self.parseClasses = [mutableParseClasses copy];
+    }
+}
+
+- (NSSet *)structuredParseClasses {
+    NSMutableSet *mutableParseClasses = [NSMutableSet new];
+    for (ParseClassModel *model in self.parseClasses) {
+        NSDictionary *aclDictionary = model.permissions;
+        if ([aclDictionary[ParseFindPermissionKey] integerValue] == ParseACLPermissionTrue) {
+            [mutableParseClasses addObject:model];
+        }
+    }
+    return [mutableParseClasses copy];
+}
+
 #pragma mark - Private Methods
+
+- (ParseClassModel *)classModelWithName:(NSString *)className {
+    for (ParseClassModel *classModel in self.parseClasses) {
+        if ([classModel.className isEqualToString:className]) {
+            return classModel;
+        }
+    }
+    return nil;
+}
 
 - (BOOL)checkExistanceOfClassWithName:(NSString *)className {
     for (ParseClassModel *classModel in self.parseClasses) {

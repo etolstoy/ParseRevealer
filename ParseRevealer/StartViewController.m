@@ -53,6 +53,7 @@
                                             
                                             if (!error) {
                                                 [self enableCustomClassesInterfaceArea:YES];
+                                                [self.classStorageService setApplicationId:self.applicationIdTextField.stringValue clientKey:self.clientKeyTextField.stringValue];
                                             } else {
                                                 [self enableCustomClassesInterfaceArea:NO];
                                             }
@@ -86,6 +87,12 @@
     NSSet *filteredCustomClasses = [self filterCustomClassesArray:classNames];
     for (NSString *className in filteredCustomClasses) {
         [self.classStorageService addClassWithName:className shouldReplaceExistingClass:NO];
+    }
+    
+    for (ParseClassModel *model in self.classStorageService.parseClasses) {
+        if (![filteredCustomClasses containsObject:model.className]) {
+            [self.classStorageService removeClass:model];
+        }
     }
 }
 

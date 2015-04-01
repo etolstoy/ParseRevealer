@@ -30,6 +30,12 @@
  */
 - (void)updatePermission:(NSString *)permissionKey withValue:(ParseACLPermissionCode)permissionCode;
 
+- (void)updateStructureWithFieldName:(NSString *)fieldName fieldType:(NSString *)fieldType;
+
+- (void)updateClassStructure:(NSArray *)classStructure;
+
+- (NSArray *)allFields;
+
 /**
  *  The name of Parse Custom Class
  */
