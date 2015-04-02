@@ -13,11 +13,11 @@
 /**
  *  Method generates a proper output string for multiple classes' ACLs
  *
- *  @param customClassesACLs NSDictionary with format {CustomClassName : CustomClassACLDictionary}
+ *  @param customClasses NSArray of ParseClassModels
  *
  *  @return Output string
  */
-+ (NSString *)stringFromCustomClassesACLs:(NSDictionary *)customClassesACLs;
++ (NSString *)stringFromCustomClassesACLs:(NSArray *)customClasses;
 
 /**
  *  Method generates a proper output string for single ACL
